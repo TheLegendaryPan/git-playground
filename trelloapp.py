@@ -18,8 +18,6 @@ board_id= '5ef1186ddea5ff1b03e085e6'
 list_id_ToDo = '5ef1186d26a8d939ea575069'
 list_id_Pending = '5ef1186d2fd57d026f03add0'
 list_id_Done = '5ef1186dcbda554f16c6d66f'
-card_with_victor = '5ef8791423ec3b39c593b662'
-card_tv = '5ef1186efc0b5b3a63063ecd'
 
 def get_card():
 
@@ -43,6 +41,26 @@ def get_all_cards_from_board():
     return response.text  
 
 #print(get_all_cards_from_board())
+
+def get_all_cards_from_todo_list():
+    url = f'https://api.trello.com/1/lists/{list_id_ToDo}/cards'
+    headers = {"Accept": "application/json"}
+    query = {"key": APP_KEY, "token": APP_TOKEN}
+
+    response=requests.request("GET", url, headers=headers, params=query)
+    return response.text  
+
+#print(get_all_cards_from_todo_list())
+
+def get_all_cards_from_done_list():
+    url = f'https://api.trello.com/1/lists/{list_id_Done}/cards'
+    headers = {"Accept": "application/json"}
+    query = {"key": APP_KEY, "token": APP_TOKEN}
+
+    response=requests.request("GET", url, headers=headers, params=query)
+    return response.text  
+
+#print(get_all_cards_from_done_list())
 
 def get_all_lists_from_board():
     url = f'https://api.trello.com/1/boards/{board_id}/lists/'
@@ -72,16 +90,20 @@ def move_card_to_done(card_id):
     response=requests.request("PUT", url, headers=headers, params=query)
     return response.text
 
+def move_card_to_do(card_id):
+    url = f'https://api.trello.com/1/cards/{card_id}'
+    headers = {"Accept": "application/json"}
+    query = {"key": APP_KEY, "token": APP_TOKEN, "idList": list_id_ToDo}
+  
+    response=requests.request("PUT", url, headers=headers, params=query)
+    return response.text
+
 # print(move_card_to_done())
 
 def change_card_status(card_name, new_list_status):
     print('HELLO')
     #print('DONE' + str(card_name) + ' : ' + str(new_list_status)) 
 
-
-# app route that takes 2 params card_name and list_name (move from to do to done)
-# through hyperlink click or box
-# 2 methods, 1 to retrieve the card_id/card_name, 2nd to retrieve the list_id/list_name
 
 def get_card_name_and_id():
     all_card_details = []

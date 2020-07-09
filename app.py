@@ -69,8 +69,8 @@ def updated():
 
 @app.route('/items/get_all_cards', methods = ["GET"])
 def getAll(): 
-    resp = trelloapp.get_all_cards_from_board()
-    resp_list = trelloapp.get_all_lists_from_board()
+    resp = trelloapp.get_all_cards_from_todo_list()
+    resp_list = trelloapp.get_all_cards_from_done_list()
     #print(resp)
     resp_json = json.loads(resp)
     resp_json_list = json.loads(resp_list)
@@ -78,7 +78,8 @@ def getAll():
         print(cards['name'])
     for lists in resp_json_list:   
         print(lists['id'] + lists['name'])
-    return render_template('all_items.html', all_cards = resp_json)
+    return render_template('all_items.html', cards_from_todo = resp_json, cards_from_done = resp_json_list)
+
 
 @app.route('/complete_item', methods = ['POST', 'GET'])
 def complete_item():
@@ -87,7 +88,16 @@ def complete_item():
         card_id = request.form['card_id']
         
         trelloapp.move_card_to_done(card_id)
-    return "COMPLETED, PLEASE CHECK TRELLO PAGE FOR UPDATE!"
+    return "Card moved to Done, Please check Trello!"
+
+@app.route('/back_todo_item', methods = ['POST', 'GET'])
+def back_todo_item():
+    if request.method == 'POST':
+        card_name = request.form['card_name']
+        card_id = request.form['card_id']
+        
+        trelloapp.move_card_to_do(card_id)
+    return "Card moved to To Do, Please check Trello!"
 
 # return the list ID from resp_json_list for name "Done"
 # call update function from trellop to update the listID for cardID
