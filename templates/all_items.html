@@ -8,7 +8,6 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <a href="{{url_for('create_item')}}"> Click here to add new card to ToDo </a>
       <h2>Current To Do Items from Trello:</h2>
            {% for cards_from_todo in cards_from_todo %}
            <form action="{{url_for('complete_item')}}" method="POST">

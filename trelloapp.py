@@ -7,6 +7,10 @@ load_dotenv()
 
 trelloapp = Flask(__name__)
 
+#Module2 project #
+#APP_KEY = os.environ.get('APP_KEY')  # take env variable from local system envor
+#APP_TOKEN=os.environ.get('APP_TOKEN')
+
 APP_KEY = os.getenv("APP_KEY")  # take .env from dotenv
 APP_TOKEN = os.getenv("APP_TOKEN")
 
@@ -68,10 +72,10 @@ def get_all_lists_from_board():
 
 #print(get_all_lists_from_board())
 
-def create_new_card(card_name):
+def create_new_card():
     url = f'https://api.trello.com/1/cards/'
     headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN, "idList": list_id_ToDo, "name": {card_name}}
+    query = {"key": APP_KEY, "token": APP_TOKEN, "idList": list_id_ToDo, "name": '2nd Pair coding with Victor'}
     
     response=requests.request("POST", url, headers=headers, params=query)
     return response.text
