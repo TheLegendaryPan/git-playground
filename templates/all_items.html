@@ -10,28 +10,28 @@
     <div class="col-md-12">
       <a href="{{url_for('create_item_page')}}"> Click here to add new card to ToDo </a>
       <h2>Current To Do Items from Trello:</h2>
-           {% for cards_from_todo in cards_from_todo %}
-           <form action="{{url_for('Items_Done')}}" method="POST">
-            <input type ='text' name='card_name' value="{{cards_from_todo['name']}}" readonly="readonly">
-            <input type = 'text' name="list_id" value="{{cards_from_todo['idList']}}" readonly="readonly">
-            <input type = 'text' name ="card_id" value="{{cards_from_todo['id']}}" readonly="readonly">
+        {% for todo in cards_from_todo %}
+          <form action="{{url_for('Items_Done')}}" method="POST">
+            <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
+            <input type = 'text' name="list_id" value="{{todo.list_id}}" readonly="readonly">
+            <input type = 'text' name ="card_id" value="{{todo.id}}" readonly="readonly">
             <input type="submit" name = 'action' value="Mark as Done"> 
             <input type="submit" name = 'action' value="Delete"> 
           </form>      
-            {% endfor %}
+        {% endfor %}
       </div>
-<br>
+      <br>
       <div class="col-md-12">
         <h2>Current Completed Items from Trello:</h2>
-             {% for cards_from_done in cards_from_done %}
-             <form action="{{url_for('Items_To_Do')}}" method="POST">
-              <input type ='text' name='card_name' value="{{cards_from_done['name']}}" readonly="readonly">
-              <input type = 'text' name="list_id" value="{{cards_from_done['idList']}}" readonly="readonly">
-              <input type = 'text' name ="card_id" value="{{cards_from_done['id']}}" readonly="readonly">
+          {% for todo in cards_from_done %}
+            <form action="{{url_for('Items_To_Do')}}" method="POST">
+              <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
+              <input type = 'text' name="list_id" value="{{todo.list_id}}" readonly="readonly">
+              <input type = 'text' name ="card_id" value="{{todo.id}}" readonly="readonly">
               <input type="submit" name = 'action' value="Mark as To Do"> 
               <input type="submit" name = 'action' value="Delete"> 
-            </form>      
-              {% endfor %}
+            </form>       
+          {% endfor %}
         </div>
 
 {% endblock %}

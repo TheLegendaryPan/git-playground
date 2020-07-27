@@ -2,13 +2,14 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 import pytest
+import os
 
 #driver = webdriver.Chrome(r"C:\Users\Feng and Li\Desktop\DevOps\git-playground\DevOps-Course-Starter\drivers\chromedriver.exe")
 
-username = 'panyongfeng1@gmail.com'
-password = 'FengTrello1'
-url='https://trello.com/login'
-myboard='https://trello.com/b/83tSYoun/fengs-to-do'
+username = os.getenv('username')
+password = os.getenv('password')
+url = os.getenv('url')
+myboard = os.getenv('myboard')
 
 # driver.get(url)
 # time.sleep(1)
@@ -58,7 +59,7 @@ def test_trello(driver):
 
 def test_task_journey(driver, test_app):
     driver.get('http://localhost:5000/')
-    assert driver.title == 'To-Do App'
+    assert driver.title == 'http://localhost:5000/items/get_all_cards'
 
 # driver.set_page_load_timeout(10)
 

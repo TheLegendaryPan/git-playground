@@ -8,17 +8,14 @@ load_dotenv()
 trelloapp = Flask(__name__)
 
 class Trello:
-    
-    def __init__(self): 
-        self.APP_KEY = os.getenv("APP_KEY")  # take .env from dotenv
-        self.APP_TOKEN = os.getenv("APP_TOKEN")
-        self.board_id= os.getenv("board_id")
-        self.list_id_ToDo = os.getenv("list_id_ToDo")
-        self.list_id_Pending = os.getenv("list_id_Pending")
-        self.list_id_Done = os.getenv("list_id_Done")
+    APP_KEY = os.getenv("APP_KEY")  # take .env from dotenv
+    APP_TOKEN = os.getenv("APP_TOKEN")
+    board_id= os.getenv("board_id")
+    list_id_ToDo = os.getenv("list_id_ToDo")
+    list_id_Pending = os.getenv("list_id_Pending")
+    list_id_Done = os.getenv("list_id_Done")
 
     def get_card(self):
-
         url = 'https://api.trello.com/1/cards/5ef1186efc0b5b3a63063ecd'
         headers = {"Accept": "application/json"}
         query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
