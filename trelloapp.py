@@ -34,7 +34,7 @@ def get_all_cards_from_board():
     query = {"key": APP_KEY, "token": APP_TOKEN}
 
     response=requests.request("GET", url, headers=headers, params=query)
-    return response.text  
+    return response.text
 
 #print(get_all_cards_from_board())
 
@@ -96,11 +96,6 @@ def move_card_to_do(card_id):
 
 # print(move_card_to_done())
 
-def change_card_status(card_name, new_list_status):
-    print('HELLO')
-    #print('DONE' + str(card_name) + ' : ' + str(new_list_status)) 
-
-
 def get_card_name_and_id():
     all_card_details = []
     all_card_details = json.loads(get_all_cards_from_board())
@@ -117,4 +112,30 @@ def get_list_name_and_id():
 
 #get_list_name_and_id()
 
+def delete_card(card_id):
+    url = f'https://api.trello.com/1/cards/{card_id}'
+    headers = {"Accept": "application/json"}
+    query = {"key": APP_KEY, "token": APP_TOKEN}
 
+    response = requests.request("DELETE", url, headers=headers, params=query)
+
+#delete_card('5ef1186efc0b5b3a63063ecd')
+
+## create board
+def create_board_4_test(name):
+    url = f'https://api.trello.com/1/boards/'
+    headers = {"Accept": "application/json"}
+    query = {"key": APP_KEY, "token": APP_TOKEN, "name": name}
+
+    response = requests.request("POST", url, headers=headers, params=query)
+
+#create_board_4_test("SundayBoard")
+
+def delete_board_4_test(id):
+    url = f'https://api.trello.com/1/boards/{id}'
+    headers = {"Accept": "application/json"}
+    query = {"key": APP_KEY, "token": APP_TOKEN}
+
+    response = requests.request("DELETE", url, params=query)
+
+#delete_board_4_test('5f1d795462e51b41ae38dd8b')

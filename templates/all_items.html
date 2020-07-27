@@ -15,7 +15,8 @@
             <input type ='text' name='card_name' value="{{cards_from_todo['name']}}" readonly="readonly">
             <input type = 'text' name="list_id" value="{{cards_from_todo['idList']}}" readonly="readonly">
             <input type = 'text' name ="card_id" value="{{cards_from_todo['id']}}" readonly="readonly">
-            <input type="submit" name = 'card_name' value="Mark as Done" onsubmit="{{ url_for('complete_item')}}"> 
+            <input type="submit" name = 'action' value="Mark as Done"> 
+            <input type="submit" name = 'action' value="Delete"> 
           </form>      
             {% endfor %}
       </div>
@@ -27,7 +28,8 @@
               <input type ='text' name='card_name' value="{{cards_from_done['name']}}" readonly="readonly">
               <input type = 'text' name="list_id" value="{{cards_from_done['idList']}}" readonly="readonly">
               <input type = 'text' name ="card_id" value="{{cards_from_done['id']}}" readonly="readonly">
-              <input type="submit" name = 'card_name' value="Mark as To Do" onsubmit="{{ url_for('back_todo_item')}}"> 
+              <input type="submit" name = 'action' value="Mark as To Do"> 
+              <input type="submit" name = 'action' value="Delete"> 
             </form>      
               {% endfor %}
         </div>
