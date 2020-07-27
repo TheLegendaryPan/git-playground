@@ -8,10 +8,10 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <a href="{{url_for('create_item')}}"> Click here to add new card to ToDo </a>
+      <a href="{{url_for('create_item_page')}}"> Click here to add new card to ToDo </a>
       <h2>Current To Do Items from Trello:</h2>
            {% for cards_from_todo in cards_from_todo %}
-           <form action="{{url_for('complete_item')}}" method="POST">
+           <form action="{{url_for('Items_Done')}}" method="POST">
             <input type ='text' name='card_name' value="{{cards_from_todo['name']}}" readonly="readonly">
             <input type = 'text' name="list_id" value="{{cards_from_todo['idList']}}" readonly="readonly">
             <input type = 'text' name ="card_id" value="{{cards_from_todo['id']}}" readonly="readonly">
@@ -24,7 +24,7 @@
       <div class="col-md-12">
         <h2>Current Completed Items from Trello:</h2>
              {% for cards_from_done in cards_from_done %}
-             <form action="{{url_for('back_todo_item')}}" method="POST">
+             <form action="{{url_for('Items_To_Do')}}" method="POST">
               <input type ='text' name='card_name' value="{{cards_from_done['name']}}" readonly="readonly">
               <input type = 'text' name="list_id" value="{{cards_from_done['idList']}}" readonly="readonly">
               <input type = 'text' name ="card_id" value="{{cards_from_done['id']}}" readonly="readonly">

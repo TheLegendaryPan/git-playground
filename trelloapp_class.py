@@ -12,10 +12,10 @@ class Trello:
     def __init__(self): 
         self.APP_KEY = os.getenv("APP_KEY")  # take .env from dotenv
         self.APP_TOKEN = os.getenv("APP_TOKEN")
-        self.board_id= '5ef1186ddea5ff1b03e085e6'
-        self.list_id_ToDo = '5ef1186d26a8d939ea575069'
-        self.list_id_Pending = '5ef1186d2fd57d026f03add0'
-        self.list_id_Done = '5ef1186dcbda554f16c6d66f'
+        self.board_id= os.getenv("board_id")
+        self.list_id_ToDo = os.getenv("list_id_ToDo")
+        self.list_id_Pending = os.getenv("list_id_Pending")
+        self.list_id_Done = os.getenv("list_id_Done")
 
     def get_card(self):
 
