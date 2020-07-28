@@ -1,28 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
-from trelloapp_class import Trello
+from trelloapp import Trello
 import json
-from trello_item import TrelloItem
+from trello_class import TrelloItem
+from view_model import ViewModel
 
 app = Flask(__name__)
 app.config.from_object('flask_config.Config')
 
 @app.route('/') 
 def root():
-    return redirect(url_for('getAll')) ## replaced index
+    return redirect(url_for('getAll')) 
 
 @app.route('/items/get_all_cards', methods = ["GET"])
 def getAll(): 
 
-    todo_resp = Trello().get_all_cards_from_todo_list()
+    todo_resp = Trello().get_all_cards_from_board()
     todo_dict = json.loads(todo_resp)
-    todo_list = [ TrelloItem.from_trello_card(todo) for todo in todo_dict ]
+    todo_list = [ TrelloItem.from_trello_card(card) for card in todo_dict ]
 
-    done_resp = Trello().get_all_cards_from_done_list()
-    done_dict = json.loads(done_resp)
-    done_list = [ TrelloItem.from_trello_card(todo) for todo in done_dict ]
-
-    return render_template('all_items.html', cards_from_todo = todo_list, cards_from_done = done_list)
+    return render_template('all_items.html', todos = ViewModel(todo_list))
 
 @app.route('/Items_Done', methods = ['POST', 'GET'])
 def Items_Done():

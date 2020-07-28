@@ -7,135 +7,146 @@ load_dotenv()
 
 trelloapp = Flask(__name__)
 
-APP_KEY = os.getenv("APP_KEY")  # take .env from dotenv
-APP_TOKEN = os.getenv("APP_TOKEN")
+class Trello:
+    APP_KEY = os.getenv("APP_KEY")  # take .env from dotenv
+    APP_TOKEN = os.getenv("APP_TOKEN")
+    board_id= os.getenv("board_id")
+    list_id_ToDo = os.getenv("list_id_ToDo")
+    list_id_Pending = os.getenv("list_id_Pending")
+    list_id_Done = os.getenv("list_id_Done")
 
-board_id= '5ef1186ddea5ff1b03e085e6'
-list_id_ToDo = '5ef1186d26a8d939ea575069'
-list_id_Pending = '5ef1186d2fd57d026f03add0'
-list_id_Done = '5ef1186dcbda554f16c6d66f'
+    def get_card(self):
+        url = 'https://api.trello.com/1/cards/5ef1186efc0b5b3a63063ecd'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
 
-def get_card():
+        response=requests.request("GET", url, headers=headers, params=query)
+        print(self.APP_KEY)
+        print(self.APP_TOKEN)
+        return response.text
 
-    url = 'https://api.trello.com/1/cards/5ef1186efc0b5b3a63063ecd'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN}
+    def get_all_cards_from_board(self):
+        url = f'https://api.trello.com/1/boards/{self.board_id}/cards/'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
 
-    response=requests.request("GET", url, headers=headers, params=query)
-    print(APP_KEY)
-    print(APP_TOKEN)
-    return response.text
+        response=requests.request("GET", url, headers=headers, params=query)
+        return response.text
+        print("my board id is:" + self.board_id)
 
-#print(get_card())
+    def get_all_cards_from_todo_list(self):
+        url = f'https://api.trello.com/1/lists/{self.list_id_ToDo}/cards'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
+        response=requests.request("GET", url, headers=headers, params=query)
+        return response.text  
 
-def get_all_cards_from_board():
-    url = f'https://api.trello.com/1/boards/{board_id}/cards/'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN}
+    def get_all_cards_from_done_list(self):
+        url = f'https://api.trello.com/1/lists/{self.list_id_Done}/cards'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
+        response=requests.request("GET", url, headers=headers, params=query)
+        return response.text  
 
-    response=requests.request("GET", url, headers=headers, params=query)
-    return response.text
+    def get_all_lists_from_board(self):
+        url = f'https://api.trello.com/1/boards/{self.board_id}/lists/'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
+        response=requests.request("GET", url, headers=headers, params=query)
+        return response.text  
 
-#print(get_all_cards_from_board())
+    def get_card_name_and_id(self):
+        all_card_details = []
+        all_card_details = json.loads(self.get_all_cards_from_board())
+        for card in all_card_details:
+            print(card['id'] + ' : ' + card['name'])
 
-def get_all_cards_from_todo_list():
-    url = f'https://api.trello.com/1/lists/{list_id_ToDo}/cards'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN}
+    def get_list_name_and_id(self):
+        all_list_details = []
+        all_list_details = json.loads(self.get_all_lists_from_board())
+        for list_status in all_list_details:
+            print(list_status['id'] + ' : ' + list_status['name'])
 
-    response=requests.request("GET", url, headers=headers, params=query)
-    return response.text  
+    def create_new_card(self, card_name):
+        url = f'https://api.trello.com/1/cards/'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN, "idList": self.list_id_ToDo, "name": {card_name}}
+        response=requests.request("POST", url, headers=headers, params=query)
+        return response.text
 
-#print(get_all_cards_from_todo_list())
+    def move_card_to_done(self, card_id):
+        url = f'https://api.trello.com/1/cards/{card_id}'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN, "idList": self.list_id_Done}
+        response=requests.request("PUT", url, headers=headers, params=query)
+        return response.text
 
-def get_all_cards_from_done_list():
-    url = f'https://api.trello.com/1/lists/{list_id_Done}/cards'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN}
-
-    response=requests.request("GET", url, headers=headers, params=query)
-    return response.text  
-
-#print(get_all_cards_from_done_list())
-
-def get_all_lists_from_board():
-    url = f'https://api.trello.com/1/boards/{board_id}/lists/'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN}
-
-    response=requests.request("GET", url, headers=headers, params=query)
-    return response.text  
-
-#print(get_all_lists_from_board())
-
-def create_new_card(card_name):
-    url = f'https://api.trello.com/1/cards/'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN, "idList": list_id_ToDo, "name": {card_name}}
+    def move_card_to_do(self, card_id):
+        url = f'https://api.trello.com/1/cards/{card_id}'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN, "idList": self.list_id_ToDo}
+        response=requests.request("PUT", url, headers=headers, params=query)
+        return response.text
     
-    response=requests.request("POST", url, headers=headers, params=query)
-    return response.text
+    def delete_card(self, card_id):
+        url = f'https://api.trello.com/1/cards/{card_id}'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
 
-#print(create_new_card())
+        response = requests.request("DELETE", url, headers=headers, params=query)
 
-def move_card_to_done(card_id):
-    url = f'https://api.trello.com/1/cards/{card_id}'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN, "idList": list_id_Done}
-  
-    response=requests.request("PUT", url, headers=headers, params=query)
-    return response.text
+    def create_board_4_test(self, name):
+        url = f'https://api.trello.com/1/boards/'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN, "name": name}
 
-def move_card_to_do(card_id):
-    url = f'https://api.trello.com/1/cards/{card_id}'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN, "idList": list_id_ToDo}
-  
-    response=requests.request("PUT", url, headers=headers, params=query)
-    return response.text
+        response = requests.request("POST", url, headers=headers, params=query)
+        return response.text
 
-# print(move_card_to_done())
+    def delete_board_4_test(self, id):
+        url = f'https://api.trello.com/1/boards/{id}'
+        headers = {"Accept": "application/json"}
+        query = {"key": self.APP_KEY, "token": self.APP_TOKEN}
 
-def get_card_name_and_id():
-    all_card_details = []
-    all_card_details = json.loads(get_all_cards_from_board())
-    for card in all_card_details:
-        print(card['id'] + ' : ' + card['name'])
+        response = requests.request("DELETE", url, params=query)
 
-#get_card_name_and_id()
+# result_card=Trello()
+# print(result_card.get_card())
 
-def get_list_name_and_id():
-    all_list_details = []
-    all_list_details = json.loads(get_all_lists_from_board())
-    for list_status in all_list_details:
-        print(list_status['id'] + ' : ' + list_status['name'])
+# result_cards_board=Trello()
+# print(result_cards_board.get_all_cards_from_board())
 
-#get_list_name_and_id()
+# result_cards_todo=Trello()
+# print(result_cards_todo.get_all_cards_from_todo_list())
 
-def delete_card(card_id):
-    url = f'https://api.trello.com/1/cards/{card_id}'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN}
+# result_cards_done=Trello()
+# print(result_cards_done.get_all_cards_from_done_list())
 
-    response = requests.request("DELETE", url, headers=headers, params=query)
+# result_lists_board=Trello()
+# print(result_lists_board.get_all_lists_from_board())
 
-#delete_card('5ef1186efc0b5b3a63063ecd')
+# result_card_and_id=Trello()
+# print(result_card_and_id.get_card_name_and_id())
 
-## create board
-def create_board_4_test(name):
-    url = f'https://api.trello.com/1/boards/'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN, "name": name}
+# result_list_and_id=Trello()
+# print(result_card_and_id.get_list_name_and_id())
 
-    response = requests.request("POST", url, headers=headers, params=query)
+# result_new_card=Trello()
+# result_new_card.create_new_card('Test')
 
-#create_board_4_test("SundayBoard")
+#result_move_to_done=Trello()
+#result_move_to_done.move_card_to_done('5ef1186efc0b5b3a63063ecd')
 
-def delete_board_4_test(id):
-    url = f'https://api.trello.com/1/boards/{id}'
-    headers = {"Accept": "application/json"}
-    query = {"key": APP_KEY, "token": APP_TOKEN}
+# result_move_to_do=Trello()
+# result_move_to_do.move_card_to_do('5ef1186efc0b5b3a63063ecd')
 
-    response = requests.request("DELETE", url, params=query)
+#result_delete_card=Trello()
+#result_delete_card.delete_card('5f1dc511b904ac8ef068bd0c')
 
-#delete_board_4_test('5f1d795462e51b41ae38dd8b')
+#result_create_board=Trello()
+#result_create_board.create_board_4_test('Test 11')
+
+#result_delete_board=Trello()
+#result_delete_board.delete_board_4_test('5f1dc5c68a5b70844aab9209')
+
+## ALL ABOVE TESTS ARE VALID ## 
