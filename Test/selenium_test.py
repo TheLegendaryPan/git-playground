@@ -59,7 +59,7 @@ def test_trello(driver):
 
 def test_task_journey(driver, test_app):
     driver.get('http://localhost:5000/')
-    assert driver.title == 'http://localhost:5000/items/get_all_cards'
+    assert driver.current_url == 'http://localhost:5000/items/get_all_cards'
 
 # driver.set_page_load_timeout(10)
 

@@ -17,3 +17,4 @@ def test_filters_by_status():
     assert view_model.to_do_items == [created_todo]
     assert view_model.doing_items == [pending_todo]
     assert view_model.done_items == [done_todo]
+
