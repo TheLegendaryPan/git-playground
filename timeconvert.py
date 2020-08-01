@@ -29,3 +29,22 @@ from datetime import date
 
 today = date.today()
 print("Today's date:", today)
+
+
+list_of_items = [0,1,2,3,4,5]
+
+def blah():
+    count_of_list = len(list_of_items)
+    print("List of list is: " + str(count_of_list))
+#    if count_of_list == 6:
+#       return list_of_items[0:4]
+    if count_of_list <= 6:
+        return list_of_items
+   # return list_of_items[0:4]
+
+
+
+print(list_of_items[0:4])
+print(len(list_of_items))
+a = blah()
+print(a)
