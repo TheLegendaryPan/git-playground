@@ -1,9 +1,12 @@
-from datetime import datetime
+from datetime import datetime, date, timedelta
 import dateutil.parser
 
 now = datetime.now()
 current_date = now.strftime("%D")
 current_date1 = "2020-07-28T14:56:22.343Z"
+
+T_2_time = date.today() - timedelta(days = 2)
+print("T_2_time is: ", T_2_time)
 
 #return [item for item in self.done_items if datetime.datetime.date(parser.parse(item.update_time)) == self.current_date ]
 #return [item for item in self.done_items if item.update_time == self.current_date1 ] ##works if current_date is hardcodes

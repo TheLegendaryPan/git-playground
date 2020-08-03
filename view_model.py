@@ -42,6 +42,7 @@ class ViewModel:
             reformat_time = datetime.strftime(convert_time, "%Y-%m-%d")
             if reformat_time == today:
                 yield item
+                        
   # below is same as above but with for loop, this is to see if it helps with testing                  
   #  @property
   #  def show_recent_done(self):

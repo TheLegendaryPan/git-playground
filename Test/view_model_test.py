@@ -1,7 +1,7 @@
 from trello_class import TrelloItem
 from view_model import ViewModel
 import pytest
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 def test_filters_by_status(): # first test to see if view model item matches each status
     created_todo = TrelloItem(1, "Test in progress Todo", "To Do", datetime.now())
@@ -22,17 +22,17 @@ def test_filters_by_status(): # first test to see if view model item matches eac
 
 @pytest.fixture # first way of setting the fixture
 def item_view():
-    created_todo = TrelloItem(1, "Test in progress Todo", "To Do", datetime.now())
-    created_todo2 = TrelloItem(2, "Test in progress Todo", "To Do", datetime.now())
-    created_todo3 = TrelloItem(3, "Test in progress Todo", "To Do", datetime.now())
-    pending_todo = TrelloItem(4, "Test Pending Todo", "Pending", datetime.now())
-    pending_todo2 = TrelloItem(5, "Test Pending Todo", "Pending", datetime.now())
-    done_todo = TrelloItem(6, "You're not done", "Done", datetime.now() - timedelta(days = 2))
-    done_todo2 = TrelloItem(7, "Are you sure you're done", "Done", datetime.now())
-    done_todo3 = TrelloItem(8, "Are you sure you're done", "Done", datetime.now())
-    done_todo4 = TrelloItem(9, "Are you sure you're done", "Done", datetime.now())
-    done_todo5 = TrelloItem(10, "Are you sure you're done", "Done", datetime.now())
-    done_todo6 = TrelloItem(11, "Are you sure you're done", "Done", datetime.now())
+    created_todo = TrelloItem(1, "Test in progress Todo", "To Do", date.today())
+    created_todo2 = TrelloItem(2, "Test in progress Todo", "To Do", date.today())
+    created_todo3 = TrelloItem(3, "Test in progress Todo", "To Do", date.today())
+    pending_todo = TrelloItem(4, "Test Pending Todo", "Pending", date.today())
+    pending_todo2 = TrelloItem(5, "Test Pending Todo", "Pending", date.today())
+    done_todo = TrelloItem(6, "You're not done", "Done", date.today() - timedelta(days = 2))
+    done_todo2 = TrelloItem(7, "Are you sure you're done", "Done", date.today() - timedelta(days = 3))
+    done_todo3 = TrelloItem(8, "Are you sure you're done1", "Done", date.today() - timedelta(days = 4))
+    done_todo4 = TrelloItem(9, "Are you sure you're done2", "Done", date.today() - timedelta(days = 5))
+    done_todo5 = TrelloItem(10, "Are you sure you're done3", "Done", date.today())
+    done_todo6 = TrelloItem(11, "Are you sure you're done4", "Done", date.today())
 
     todos = [
         created_todo,
@@ -91,5 +91,7 @@ def test_return_specific_done(item_view):
 
 # add test to show recent done updated is today - THIS ONE DOESN'T WORK; SHOULD RETURN 5 per item_view but shows 1
 def test_return_done_today(item_view): 
-    recent_done = [item_view.show_recent_done]
-    assert len(recent_done) == 5
+    recent_done = item_view.show_recent_done
+    assert [recent_done][0].title == "Are you sure you're done3"
+
+
