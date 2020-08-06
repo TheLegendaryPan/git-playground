@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv 
+from datetime import datetime, date
 load_dotenv()
 
 class TrelloItem:
@@ -15,7 +16,8 @@ class TrelloItem:
 
     @classmethod
     def from_trello_card(cls, card):
-        return cls.from_list_id(card["id"], card["name"], card["idList"], card["dateLastActivity"])
+        update_time = datetime.strptime(card["dateLastActivity"],'%Y-%m-%dT%H:%M:%S.%fZ') #date converstion from trello string to date
+        return cls.from_list_id(card["id"], card["name"], card["idList"], update_time)
 
     @classmethod
     def from_list_id(cls, id, title, list_id, update_time):

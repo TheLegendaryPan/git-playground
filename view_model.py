@@ -34,14 +34,16 @@ class ViewModel:
     def done_items(self):
         return [item for item in self._items if item.status == "Done"]
 
+#updated item.update_time is now just a date. No need to convert frmo string to date first)
     @property
     def show_recent_done(self):
         today = self.current_date
+        
         for item in self.done_items:
-            convert_time = datetime.strptime(item.update_time,'%Y-%m-%dT%H:%M:%S.%fZ')
-            reformat_time = datetime.strftime(convert_time, "%Y-%m-%d")
+            reformat_time = datetime.strftime(item.update_time, "%Y-%m-%d")
             if reformat_time == today:
-                yield item
+                yield item   ##yield creates a generator list. use return instead
+        
                         
   # below is same as above but with for loop, this is to see if it helps with testing                  
   #  @property

@@ -51,3 +51,4 @@ def test_index_page_with_mock2(mock_get_requests, client):
     assert "67890" in data
     assert "2020-08-01T12:52:06.278Z" in data
     assert data2[0] == {'id': '12345', 'name': 'Test to do item', 'idList': '67890', 'dateLastActivity': '2020-08-01T12:52:06.278Z'}
+    assert data2[0]['name'] == "Test to do item"

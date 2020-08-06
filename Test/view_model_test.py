@@ -89,9 +89,10 @@ def test_return_specific_done(item_view):
     assert done[0].title == "You're not done"
     assert done[1].title == "Are you sure you're done"
 
-# add test to show recent done updated is today - THIS ONE DOESN'T WORK; SHOULD RETURN 5 per item_view but shows 1
+# add test to show recent done updated is today - THIS now WORKS! 
 def test_return_done_today(item_view): 
     recent_done = item_view.show_recent_done
-    assert [recent_done][0].title == "Are you sure you're done3"
+    assert next(recent_done).title == "Are you sure you're done3"
+    assert next(recent_done).id == 11
 
 
