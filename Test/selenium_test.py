@@ -6,47 +6,25 @@ import os
 from threading import Thread
 import app
 from trelloapp import Trello
+from dotenv import load_dotenv
 
-#driver = webdriver.Chrome(r"C:\Users\Feng and Li\Desktop\DevOps\git-playground\DevOps-Course-Starter\drivers\chromedriver.exe")
-
-username = os.getenv('username')
+username = os.getenv('username1')
 password = os.getenv('password')
 url = os.getenv('url')
 myboard = os.getenv('myboard')
 
-# Module scope re-uses the fixture
+# Module scope re-uses the fixture; note the webdriver chromedriver.exe is stored under python script folder
 @pytest.fixture(scope='module')
 def driver():
-    with webdriver.Chrome(r"C:\Users\Feng and Li\Desktop\DevOps\git-playground\DevOps-Course-Starter\drivers\chromedriver.exe") as driver:
+    with webdriver.Chrome() as driver:
         yield driver
 
-#Below works, logs into trello with my credentials and click on my board
-def test_trello(driver):
-    driver.get(url)
-    time.sleep(2)
-    driver.find_element_by_id('user').send_keys(username)
-    time.sleep(2)
-
-    loginclick = driver.find_elements_by_id('login')
-    for loginclick in loginclick: 
-        loginclick.send_keys(Keys.ENTER)
-    time.sleep(2)
-
-    loginpass = driver.find_element_by_id('password').send_keys(password)
-    time.sleep(2)
-
-    login4real = driver.find_element_by_id('login-submit').send_keys(Keys.ENTER)
-    time.sleep(12)
-
-    driver.get(myboard)
-    time.sleep(5)
-    assert driver.current_url == myboard
-    
+#r"C:\Users\DevOps-Feng\Desktop\DevOps\git-playground\DevOps-Course-Starter\drivers\chromedriver.exe
 
 @pytest.fixture(scope='module')
 def test_app():
     # Create the new board & update the board id environment variable
-    board_id = Trello().create_board_4_test("Tasks")
+    board_id = Trello().create_test_board("Tasks")
     os.environ['TRELLO_BOARD_ID'] = board_id
     # construct the new application
     application = app.create_app()
@@ -57,7 +35,7 @@ def test_app():
     yield app
     # Tear Down
     thread.join(1)
-    Trello().delete_board_4_test(board_id)
+    Trello().delete_test_board(board_id)
 
 def test_task_journey(driver, test_app):
     driver.get('http://localhost:5000/')
@@ -82,3 +60,25 @@ def test_task_journey(driver, test_app):
 #     link = driver.find_element_by_link_text('Downloads')
 #     link.click()
 #     assert driver.current_url == 'https://www.python.org/downloads/'
+
+#def test_trello(driver):
+#    driver.get(url)
+#    time.sleep(2)
+#    driver.find_element_by_id('user').send_keys(username)
+#    time.sleep(2)
+#
+#    loginclick = driver.find_elements_by_id('login')
+#    for loginclick in loginclick: 
+#        loginclick.send_keys(Keys.ENTER)
+#    time.sleep(2)
+
+#    loginpass = driver.find_element_by_id('password').send_keys(password)
+#    time.sleep(2)
+
+#    login4real = driver.find_element_by_id('login-submit').send_keys(Keys.ENTER)
+#    time.sleep(12)
+#
+#    driver.get(myboard)
+#    time.sleep(5)
+#    assert driver.current_url == myboard
+    
