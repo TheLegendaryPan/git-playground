@@ -1,73 +1,64 @@
 from flask import Flask, render_template, request, redirect, url_for
-import session_items as session
-import requests
 import os
-import trelloapp
+from trelloapp import Trello
 import json
+from trello_class import TrelloItem
+from view_model import ViewModel
 
-app = Flask(__name__)
-app.config.from_object('flask_config.Config')
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object('flask_config.Config')
 
-@app.route('/') #redirect root to the url or route mapped to the index function
-def root():
-    return redirect(url_for('getAll')) ## replaced index
+    @app.route('/') 
+    def root():
+        return redirect(url_for('getAll')) 
 
-### Module 2 stuff ### 
+    @app.route('/items/get_all_cards', methods = ["GET"])
+    def getAll(): 
 
-@app.route('/items/get_all_cards', methods = ["GET"])
-def getAll(): 
-    resp = trelloapp.get_all_cards_from_todo_list()
-    resp_list = trelloapp.get_all_cards_from_done_list()
-    #print(resp)
-    resp_json = json.loads(resp)
-    resp_json_list = json.loads(resp_list)
-    for cards in resp_json:   
-        print(cards['name'])
-    for lists in resp_json_list:   
-        print(lists['id'] + lists['name'])
-    return render_template('all_items.html', cards_from_todo = resp_json, cards_from_done = resp_json_list)
+        todo_resp = Trello().get_all_cards_from_board()
+        todo_dict = json.loads(todo_resp)
+        todo_list = [ TrelloItem.from_trello_card(card) for card in todo_dict ]
 
-@app.route('/complete_item', methods = ['POST', 'GET'])
-def complete_item():
-    if request.method == 'POST':
-        card_name = request.form['card_name']
-        card_id = request.form['card_id']
-        
-        trelloapp.move_card_to_done(card_id)
-    return "Card moved to Done, Please refresh page!"
+        return render_template('all_items.html', todos = ViewModel(todo_list))
 
-@app.route('/back_todo_item', methods = ['POST', 'GET'])
-def back_todo_item():
-    if request.method == 'POST':
-        card_name = request.form['card_name']
-        card_id = request.form['card_id']
-        
-        trelloapp.move_card_to_do(card_id)
-    return "Card moved to To Do, Please refresh page!"
+    @app.route('/Items_Done', methods = ['POST', 'GET'])
+    def Items_Done():
+        if request.method == 'POST':
+            if request.form['action'] == 'Mark as Done':
+                card_name = request.form['card_name']
+                card_id = request.form['card_id']
+                Trello().move_card_to_done(card_id)
+            elif request.form['action'] == 'Delete':
+                card_id = request.form['card_id']
+                Trello().delete_card(card_id)
+        return redirect("/")
 
-@app.route('/items/create_item', methods = ['POST', 'GET'])
-def create_item():
-    return render_template('CreateCard.html')
+    @app.route('/Items_To_Do', methods = ['POST', 'GET'])
+    def Items_To_Do():
+        if request.method == 'POST':
+            if request.form['action'] == 'Mark as To Do':
+                card_name = request.form['card_name']
+                card_id = request.form['card_id']   
+                Trello().move_card_to_do(card_id)
+            elif request.form['action'] == 'Delete':
+                card_id = request.form['card_id']
+                Trello().delete_card(card_id)
+        return redirect("/")
 
-@app.route('/items/adding_new_item', methods = ['POST', 'GET'])
-def adding_new_item():
-    if request.method == 'POST':
-        card_name=request.form['card_name']
-        trelloapp.create_new_card(card_name)
-    return "Card added to To Do, Please refresh page!"
+    @app.route('/items/create_item_page', methods = ['POST', 'GET'])
+    def create_item_page():
+        return render_template('CreateCard.html')
 
-# return the list ID from resp_json_list for name "Done"
-# call update function from trellop to update the listID for cardID
+    @app.route('/items/Items_To_Add', methods = ['POST', 'GET'])
+    def Items_To_Add():
+        if request.method == 'POST':
+            card_name=request.form['card_name']
+            Trello().create_new_card(card_name)
+        return redirect("/")
+     
 
-#@app.route('/ToDo/CreateCard')
-#def create_card(list_id, card_name): 
-#    url_card = f'https://api.trello.com/1/cards'
-#    parameters = {"name": card_name, "idList": list_id, "key": APP_KEY, "token": APP_TOKEN}
-#    response = requests.request("POST", url_card, params=parameters)
-#    card_id = response.json()['id']
-#    return card_id
- 
+    if __name__ == '__main__':
+        app.run(debug=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
+    return app

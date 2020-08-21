@@ -6,30 +6,104 @@
     <h1 class="display-4">To-Do App</h1>
     <p class="lead">Just another to-do app.</p>
   </div>
+  
+  <script>
+    function ShowHideDone() {
+      var x = document.getElementById("HideStuff");
+      if (x.style.visibility == 'hidden') {
+        x.style.visibility = "visible";
+      } else {
+        x.style.visibility = "hidden";
+      }
+    }
+  </script>
+    <script>
+      function ShowHideDoneToday() {
+        var x = document.getElementById("HideStuffToday");
+        if (x.style.visibility == 'hidden') {
+          x.style.visibility = "visible";
+        } else {
+          x.style.visibility = "hidden";
+        }
+      }
+    </script>
+
   <div class="row">
     <div class="col-md-12">
-      <a href="{{url_for('create_item')}}"> Click here to add new card to ToDo </a>
-      <h2>Current To Do Items from Trello:</h2>
-           {% for cards_from_todo in cards_from_todo %}
-           <form action="{{url_for('complete_item')}}" method="POST">
-            <input type ='text' name='card_name' value="{{cards_from_todo['name']}}" readonly="readonly">
-            <input type = 'text' name="list_id" value="{{cards_from_todo['idList']}}" readonly="readonly">
-            <input type = 'text' name ="card_id" value="{{cards_from_todo['id']}}" readonly="readonly">
-            <input type="submit" name = 'card_name' value="Mark as Done" onsubmit="{{ url_for('complete_item')}}"> 
+      <a href="{{url_for('create_item_page')}}"> Click here to add new card to ToDo </a>
+      <h2>To Do Items from Trello:</h2>
+        {% for todo in todos.to_do_items %}
+          <form action="{{url_for('Items_Done')}}" method="POST">
+            <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
+            <input type = 'text' name="status" value="{{todo.status}}" readonly="readonly">
+            <input type = 'hidden' name="card_id" value="{{todo.id}}" readonly="readonly">
+            <input type = 'text' name="update_time" value="{{todo.update_time}}" readonly="readonly">
+            <input type = "submit" style="font-size:12pt;color:white;background-color:rgb(99, 179, 33);border:2px solid #000000" name = 'action' value="Mark as Done"> 
+            <input type = "submit" style="font-size:12pt;color:white;background-color:rgb(255, 49, 49);border:2px solid #000000" name = 'action' value="Delete"> 
           </form>      
-            {% endfor %}
+        {% endfor %}
       </div>
-<br>
+      <p>&nbsp;</p>
       <div class="col-md-12">
-        <h2>Current Completed Items from Trello:</h2>
-             {% for cards_from_done in cards_from_done %}
-             <form action="{{url_for('back_todo_item')}}" method="POST">
-              <input type ='text' name='card_name' value="{{cards_from_done['name']}}" readonly="readonly">
-              <input type = 'text' name="list_id" value="{{cards_from_done['idList']}}" readonly="readonly">
-              <input type = 'text' name ="card_id" value="{{cards_from_done['id']}}" readonly="readonly">
-              <input type="submit" name = 'card_name' value="Mark as To Do" onsubmit="{{ url_for('back_todo_item')}}"> 
-            </form>      
-              {% endfor %}
-        </div>
+        <h2>Pending Items from Trello:</h2>
+          {% for todo in todos.doing_items %}
+            <form action="{{url_for('Items_Done')}}" method="POST">
+               <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
+               <input type = 'text' name="status" value="{{todo.status}}" readonly="readonly">
+               <input type = 'hidden' name="card_id" value="{{todo.id}}" readonly="readonly">
+               <input type = 'text' name="update_time" value="{{todo.update_time}}" readonly="readonly">
+               <input type = "submit" style="font-size:12pt;color:white;background-color:rgb(99, 179, 33);border:2px solid #000000" name = 'action' value="Mark as Done"> 
+               <input type = "submit" style="font-size:12pt;color:white;background-color:rgb(255, 49, 49);border:2px solid #000000" name = 'action' value="Delete"> 
+            </form>       
+          {% endfor %}
+      </div>
+      <p>&nbsp;</p>   
+      <div class="col-md-12">
+        <h2>Show Recent Done Item If GT or LT 5</h2>
+          {% for todo in todos.show_recent_if_gt_5_all_if_lt_5_done %}
+            <form action="{{url_for('Items_To_Do')}}" method="POST">
+              <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
+              <input type = 'text' name="status" value="{{todo.status}}" readonly="readonly">
+              <input type = 'hidden' name="card_id" value="{{todo.id}}" readonly="readonly">
+              <input type = 'text' name="update_time" value="{{todo.update_time}}" readonly="readonly">
+              <input type="submit" style="font-size:12pt;color:white;background-color:rgb(99, 179, 33);border:2px solid #000000" name = 'action' value="Mark as To Do"> 
+              <input type="submit" style="font-size:12pt;color:white;background-color:rgb(255, 49, 49);border:2px solid #000000" name = 'action' value="Delete"> 
+            </form>       
+          {% endfor %}
+      </div>
+      <p>&nbsp;</p>
+      <div class="col-md-12">
+      </div>
+      <p>&nbsp;</p>
 
+      <button onclick="ShowHideDone()">Show/Hide All Done Itmes</button> <button onclick="ShowHideDoneToday()">Show/Hide All Done Itmes Today</button>
+
+      <div class="col-md-12" id="HideStuff" style = "visibility: hidden">
+         <h2>All Completed Items from Trello:</h2>
+           {% for todo in todos.done_items %}
+            <form action="{{url_for('Items_To_Do')}}" method="POST">
+              <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
+              <input type = 'text' name="status" value="{{todo.status}}" readonly="readonly">
+              <input type = 'hidden' name="card_id" value="{{todo.id}}" readonly="readonly">
+              <input type = 'text' name="update_time" value="{{todo.update_time}}" readonly="readonly">
+              <input type="submit" style="font-size:12pt;color:white;background-color:rgb(99, 179, 33);border:2px solid #000000" name = 'action' value="Mark as To Do"> 
+              <input type="submit" style="font-size:12pt;color:white;background-color:rgb(255, 49, 49);border:2px solid #000000" name = 'action' value="Delete"> 
+            </form>       
+          {% endfor %}
+      </div>
+      <p>&nbsp;</p>
+      <div class="col-md-12" id="HideStuffToday" style = "visibility: hidden">
+        <h2>Show Today's Done Item - "Used as Benchmark"</h2>
+          {% for todo in todos.show_recent_done %}
+            <form action="{{url_for('Items_To_Do')}}" method="POST">
+              <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
+              <input type = 'text' name="status" value="{{todo.status}}" readonly="readonly">
+              <input type = 'hidden' name="card_id" value="{{todo.id}}" readonly="readonly">
+              <input type = 'text' name="update_time" value="{{todo.update_time}}" readonly="readonly">
+              <input type="submit" style="font-size:12pt;color:white;background-color:rgb(99, 179, 33);border:2px solid #000000" name = 'action' value="Mark as To Do"> 
+              <input type="submit" style="font-size:12pt;color:white;background-color:rgb(255, 49, 49);border:2px solid #000000" name = 'action' value="Delete"> 
+            </form>       
+          {% endfor %}
+      </div>
+      <p>&nbsp;</p>
 {% endblock %}

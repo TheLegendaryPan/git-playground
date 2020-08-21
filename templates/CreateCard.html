@@ -10,9 +10,9 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Use below form to add new title:</h2>
-        <form action="{{url_for('adding_new_item')}}" method="POST">
+        <form action="{{url_for('Items_To_Add')}}" method="POST">
             <input type="text" name = "card_name">
-            <input type="submit" name = 'card_name' value="Mark as To Do" onsubmit="{{ url_for('adding_new_item')}}"> 
+            <input type="submit" name = 'card_name' value="Add this card" onsubmit="{{ url_for('Items_To_Add')}}"> 
         </form>
     </div>
   </div>
