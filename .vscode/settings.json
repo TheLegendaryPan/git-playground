@@ -4,5 +4,6 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.pythonPath": "c:\\Users\\DevOps-Feng\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
 }

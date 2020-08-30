@@ -95,7 +95,7 @@ class Trello:
 
         response = requests.request("DELETE", url, headers=headers, params=query)
 
-    def create_board_4_test(self, name):
+    def create_test_board(self, name):
         url = f'https://api.trello.com/1/boards/'
         headers = {"Accept": "application/json"}
         query = {"key": self.APP_KEY, "token": self.APP_TOKEN, "name": name}
@@ -103,7 +103,7 @@ class Trello:
         response = requests.request("POST", url, headers=headers, params=query)
         return response.text
 
-    def delete_board_4_test(self, id):
+    def delete_test_board(self, id):
         url = f'https://api.trello.com/1/boards/{id}'
         headers = {"Accept": "application/json"}
         query = {"key": self.APP_KEY, "token": self.APP_TOKEN}

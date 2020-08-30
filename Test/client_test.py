@@ -35,13 +35,16 @@ def mock_get_requests(monkeypatch):
 def test_index_page(client):
     response = client.get('/items/get_all_cards')
     assert response.status_code == 200 
+    assert response.location == None
 
-#works
+def test_index_page2(client):
+    response = client.get('/')
+    assert response.status_code == 302
+
 def test_index_page_with_mock(mock_get_requests, client):
     response = client.get('/items/get_all_cards')
     assert response.status_code == 200 
-
-#magically worked... 
+    
 def test_index_page_with_mock2(mock_get_requests, client):
     response = client.get('/items/get_all_cards')
     data = Trello.get_all_cards_from_board(response)
