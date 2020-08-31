@@ -40,7 +40,8 @@ Vagrant.configure("2") do |config|
 		poetry update
 		poetry install
 		# <your script here> 
-		poetry run flask run --host=0.0.0.0
+		nohup poetry run flask run --host=0.0.0.0 ##just nohup works but doesnt return prompt
+		#poetry run flask run --host=0.0.0.0 ##0.0.0.0 is needed to allow access
 		"}
 	end
 	
