@@ -10,13 +10,6 @@ from dotenv import load_dotenv
 from Test import board
 import json
 
-#file_path = find_dotenv('.env.test')
-#load_dotenv(file_path, override=True)
-#username = os.getenv('username1')
-#password = os.getenv('password')
-#url = os.getenv('url')
-#myboard = os.getenv('myboard')
-
 # Module scope re-uses the fixture; note the webdriver chromedriver.exe is stored under python script folder
 @pytest.fixture(scope='module')
 def driver():
@@ -44,7 +37,6 @@ def test_app():
 
 def test_task_journey(driver, test_app):
     driver.get('http://localhost:5000/')
-    print(board_id)
     assert driver.current_url == 'http://localhost:5000/items/get_all_cards'
     assert driver.title == 'To-Do App'
 
