@@ -1,12 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/bionic64"
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+
 	config.vm.network "forwarded_port", guest: 5000, host: 5000
 	config.vm.provision "shell", privileged: false, inline: <<-SHELL     
 		sudo apt-get update 
@@ -15,7 +9,6 @@ Vagrant.configure("2") do |config|
 		libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
 		xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 		
-		#apt-get install pyenv as vagrant, not root
 		git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 		echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 		echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
@@ -39,8 +32,8 @@ Vagrant.configure("2") do |config|
 		cd /vagrant
 		poetry update
 		poetry install
-		# <your script here> 
-		nohup poetry run flask run --host=0.0.0.0 ##just nohup works but doesnt return prompt
+		# starting the app
+		nohup poetry run flask run --host=0.0.0.0 > log.txt 2>&1 &
 		#poetry run flask run --host=0.0.0.0 ##0.0.0.0 is needed to allow access
 		"}
 	end

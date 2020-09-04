@@ -2,21 +2,11 @@
 
 ## Getting started
 
-The project uses a virtual environment to isolate package dependencies. To create the virtual environment and install required packages, run the following from a bash shell terminal:
+Please copy .env.template to .env and to run poetry install to install the essential dependencies needed for the to-do app. 
 
-### On macOS and Linux
-```bash
-$ source setup.sh
-```
-### On Windows (Using Git Bash)
-```bash
-$ source setup.sh --windows
-```
+Once complete, you can use "poetry run flask run", "poery run pytest" to start the to-do app via flask and run through the test cases. 
 
-Once the setup script has completed and all packages have been installed, start the Flask app by running:
-```bash
-$ flask run
-```
+"vagrant up" command can be used if you've vagrant and a vypervisor installed to bring up the environment in VM. 
 
 You should see output similar to the following:
 ```bash
