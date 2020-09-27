@@ -1,0 +1,8 @@
+.env
+.env.template
+.git
+.idea
+.pytest_cache
+.vagrant
+.vscode
+Vagrantfile
