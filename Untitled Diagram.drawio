@@ -1,17 +1,32 @@
-<mxfile host="app.diagrams.net" modified="2020-10-18T21:12:21.164Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="cW60p-L2b5bi018J7z6q" version="13.8.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-10-18T21:26:01.344Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="Rl8GquO_tBfdz5te4_l_" version="13.8.0" type="github">
   <diagram name="Page-1" id="6133507b-19e7-1e82-6fc7-422aa6c4b21f">
     <mxGraphModel dx="1422" dy="737" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-26" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="80" width="230" height="150" as="geometry" />
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-30" value="" style="group;labelBorderColor=none;labelBackgroundColor=none;glass=0;opacity=0;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="40" y="40" width="440" height="410" as="geometry" />
         </mxCell>
-        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-28" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="160" y="80" width="80" height="120" as="geometry" />
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-28" value="&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;&lt;br&gt;User&lt;/u&gt;&lt;/font&gt;" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-30">
+          <mxGeometry width="81.86046511627907" height="126.15384615384615" as="geometry" />
         </mxCell>
-        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-29" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="320" width="230" height="150" as="geometry" />
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-29" value="&lt;font&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;TRELLO&lt;/font&gt;&lt;br&gt;&lt;u style=&quot;font-size: 12px&quot;&gt;[&lt;/u&gt;External&amp;nbsp;&lt;span style=&quot;font-size: 12px&quot;&gt;Software System&lt;/span&gt;&lt;u style=&quot;font-size: 12px&quot;&gt;]&lt;/u&gt;&lt;br&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;Stores all to do items for each category for the given board.&lt;/font&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;&amp;nbsp;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-30">
+          <mxGeometry x="204.6511627906977" y="283.84615384615387" width="235.34883720930233" height="157.69230769230765" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-31" value="" style="endArrow=classic;html=1;entryX=0.004;entryY=0.453;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-30" target="T8Wpe2ZxtMlLwS92TZOT-26">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="81.86046511627907" y="73.58974358974359" as="sourcePoint" />
+            <mxPoint x="133.02325581395348" y="21.025641025641022" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-35" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.53;exitY=0.013;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-30" source="T8Wpe2ZxtMlLwS92TZOT-29">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="276.27906976744185" y="210.25641025641025" as="sourcePoint" />
+            <mxPoint x="327.4418604651163" y="157.69230769230765" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-26" value="&lt;font&gt;&lt;u style=&quot;font-size: 24px&quot;&gt;To Do App&lt;br&gt;&lt;/u&gt;[Software System]&lt;br&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;Allows user to view current list of to do, pending and done items via Trello, add new items, delete or move existing items.&amp;nbsp;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-30">
+          <mxGeometry x="204.65116279069764" width="235.34883720930233" height="157.69230769230765" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
