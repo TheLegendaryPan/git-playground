@@ -20,6 +20,23 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
+```
+To build and run the app via Docker. You can use the following commands for production and development instances. Note local .env file is passed in during Docker run. 
+
+Production: 
+$ docker build --target production --tag todo-app:prod .
+$ docker run -d -p 5000:5001 --env-file .env todo-app:prod
+http://localhost:5000/items/get_all_cards
+
+Development:
+$ docker build --target development --tag todo-app:dev .
+$ docker run -d -p 5002:5000 --env-file .env todo-app:dev
+http://localhost:5002/items/get_all_cards
+
+With mount bind on docker run: 
+$ docker run -d -p 5000:5001 --mount type=bind,source="$(pwd)",target=/app --env-file .env todo-app:prod
+
+$ docker run -d -p 5002:5000 --mount type=bind,source="$(pwd)",target=/app --env-file .env todo-app:dev
 
 ```
 ## API Credentials and Trello Usage:  
@@ -33,3 +50,4 @@ Renaming above link to https://trello.com/b/83tSYoun/fengs-to-do.json to display
 Alternatively you can extract board, list and card id details using Postman. 
 
 ```
+
