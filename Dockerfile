@@ -20,24 +20,24 @@ RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction
 
 # Configure for production - multi build
-FROM python:3.8-slim-buster as production
-ENV POETRY_VERSION=1.0.10
-RUN pip install "poetry==$POETRY_VERSION"
-WORKDIR /app
-COPY --from=builder /app/ /app/ 
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction
+FROM builder as production
+#ENV POETRY_VERSION=1.0.10
+#RUN pip install "poetry==$POETRY_VERSION"
+#WORKDIR /app
+#COPY --from=builder /app/ /app/ 
+#RUN poetry config virtualenvs.create false \
+#    && poetry install --no-interaction
 # set my port on container to 5001
 EXPOSE 5001
 CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--log-level=debug", "app:create_app()"]
 
 # Configure for development - multi build
-FROM python:3.8-slim-buster as development
-ENV POETRY_VERSION=1.0.10
-RUN pip install "poetry==$POETRY_VERSION"
-WORKDIR /app
-COPY --from=builder /app/ /app/ 
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction
+FROM builder as development
+#ENV POETRY_VERSION=1.0.10
+#RUN pip install "poetry==$POETRY_VERSION"
+#WORKDIR /app
+#COPY --from=builder /app/ /app/ 
+#RUN poetry config virtualenvs.create false \
+#    && poetry install --no-interaction
 EXPOSE 5002
 CMD flask run --host=0.0.0.0
