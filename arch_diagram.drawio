@@ -1,0 +1,236 @@
+<mxfile host="app.diagrams.net" modified="2020-10-26T00:06:52.056Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="HNjrFd_oi9gBQwpfrgSH" version="13.8.2" type="github">
+  <diagram name="Page-1" id="6133507b-19e7-1e82-6fc7-422aa6c4b21f">
+    <mxGraphModel dx="1643" dy="2995" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#FCE7CD" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-80" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="2360" y="120" width="1590" height="956" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-81" value="" style="group" parent="T8Wpe2ZxtMlLwS92TZOT-80" vertex="1" connectable="0">
+          <mxGeometry x="80" y="-30" width="1500" height="970" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-8" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;gradientColor=none;fontColor=#FFFFFF;opacity=10;fillColor=#0000CC;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry y="500" width="770" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-83" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;fontColor=#FFFFFF;opacity=10;fillColor=#6666FF;" parent="T8Wpe2ZxtMlLwS92TZOT-81" vertex="1">
+          <mxGeometry x="-40" width="1240" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-82" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;gradientColor=none;fontColor=#FFFFFF;opacity=10;fillColor=#0000CC;" parent="T8Wpe2ZxtMlLwS92TZOT-81" vertex="1">
+          <mxGeometry y="30" width="550" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-85" value="&lt;font&gt;&lt;span style=&quot;font-size: 18px&quot;&gt;trelloapp.py&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-81" vertex="1">
+          <mxGeometry x="69.99854965127022" y="610.0036363636364" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-91" value="&lt;font&gt;&lt;span style=&quot;font-size: 18px&quot;&gt;Imports libraries&lt;br&gt;&lt;/span&gt;[flask, os, trelloapp, json, view_model]&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-81" vertex="1">
+          <mxGeometry x="232.57999999999998" y="46" width="217.42" height="70.01" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-92" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#23445D;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.462;exitY=0.012;exitDx=0;exitDy=0;exitPerimeter=0;" parent="T8Wpe2ZxtMlLwS92TZOT-81" source="T8Wpe2ZxtMlLwS92TZOT-85" target="VyCpD4L54i-CCeLWorp6-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="279.9994774082602" y="576.1836363636364" as="sourcePoint" />
+            <mxPoint x="279.99981274769743" y="439.998181818182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-3" value="&lt;font&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;API&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry x="942.57854965127" y="628.9980637548433" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-4" value="&lt;font&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Flask App Routes&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry x="59.99854965126997" y="189.9980637548433" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-5" value="&lt;font&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;POST&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry x="439.99854965126997" y="529.9980637548433" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-6" value="&lt;font&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;GET&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry x="439.99854965126997" y="729.9980637548433" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-7" value="&lt;font style=&quot;font-size: 23px&quot; color=&quot;#000000&quot;&gt;&lt;b&gt;app.py&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;fillColor=#0000CC;gradientColor=none;fontColor=#FFFFFF;opacity=10;arcSize=50;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry x="20" y="46" width="192.58" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-9" value="&lt;font style=&quot;font-size: 23px&quot; color=&quot;#000000&quot;&gt;&lt;b&gt;trelloapp.py&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;fillColor=#0000CC;gradientColor=none;fontColor=#FFFFFF;opacity=10;arcSize=50;" vertex="1" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry x="40" y="850" width="192.58" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-43" value="" style="endArrow=classic;html=1;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-81" target="VyCpD4L54i-CCeLWorp6-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="272" as="sourcePoint" />
+            <mxPoint x="800" y="215" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-45" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-81" target="VyCpD4L54i-CCeLWorp6-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="770" y="710" as="sourcePoint" />
+            <mxPoint x="890" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-46" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.998;exitY=0.598;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-81" source="VyCpD4L54i-CCeLWorp6-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="810" y="410" as="sourcePoint" />
+            <mxPoint x="770" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-48" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-81" source="T8Wpe2ZxtMlLwS92TZOT-85" target="VyCpD4L54i-CCeLWorp6-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="810" y="410" as="sourcePoint" />
+            <mxPoint x="860" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-47" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-81" target="VyCpD4L54i-CCeLWorp6-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="770" y="710" as="sourcePoint" />
+            <mxPoint x="810" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-49" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="T8Wpe2ZxtMlLwS92TZOT-81" source="T8Wpe2ZxtMlLwS92TZOT-85" target="VyCpD4L54i-CCeLWorp6-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="690" as="sourcePoint" />
+            <mxPoint x="479.99854965126997" y="622.26935005924" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-51" value="" style="group" vertex="1" connectable="0" parent="T8Wpe2ZxtMlLwS92TZOT-81">
+          <mxGeometry x="650" y="40" width="510" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-10" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;gradientColor=none;fontColor=#FFFFFF;opacity=10;fillColor=#0000CC;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry width="510" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-12" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Create New To Do Item&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="270" y="120" width="217.42" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-13" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Pending Items&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="30" y="120.00000000000003" width="217.42" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-15" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Show Recent Done Items If Greater Than 5, Show All If Less Than 5&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="30" y="295" width="217.42" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-16" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Show/Hide All Done Items&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="30.000000000000114" y="204.54000000000002" width="217.42" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-37" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Show Today&#39;s Done Item&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="265.1600000000001" y="30.000000000000014" width="217.42" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-38" value="&lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;font-size: 23px&quot;&gt;&lt;b&gt;HTML templates&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;fillColor=#0000CC;gradientColor=none;fontColor=#FFFFFF;opacity=10;arcSize=50;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="290" y="370" width="192.58" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="VyCpD4L54i-CCeLWorp6-51" source="VyCpD4L54i-CCeLWorp6-13" target="VyCpD4L54i-CCeLWorp6-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-40" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;To Do Items&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="30.000000000000114" y="30" width="217.42" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-41" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Delete Item&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="270" y="204.54000000000002" width="217.42" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-42" value="&lt;font&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;Update Item To Done&lt;/u&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" vertex="1" parent="VyCpD4L54i-CCeLWorp6-51">
+          <mxGeometry x="270" y="295" width="217.42" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-49" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="60" y="-1040" width="620" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-48" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;fontColor=#FFFFFF;opacity=10;fillColor=#6666FF;" parent="T8Wpe2ZxtMlLwS92TZOT-49" vertex="1">
+          <mxGeometry width="620" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-47" value="" style="group" parent="T8Wpe2ZxtMlLwS92TZOT-49" vertex="1" connectable="0">
+          <mxGeometry x="12" y="25" width="550" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-30" value="" style="group;labelBorderColor=none;labelBackgroundColor=none;glass=0;opacity=0;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-47" vertex="1" connectable="0">
+          <mxGeometry y="9.604893512830866" width="406.4835810867558" height="393.80063402606555" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-28" value="&lt;font&gt;&lt;br&gt;&lt;u style=&quot;font-size: 24px&quot;&gt;&lt;br&gt;User&lt;/u&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-30" vertex="1">
+          <mxGeometry width="75.62485229521037" height="121.16942585417401" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-26" value="&lt;font&gt;&lt;u style=&quot;font-size: 24px&quot;&gt;To Do App&lt;br&gt;&lt;/u&gt;[Software System]&lt;br&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;Allows user to view current &lt;br&gt;list of to do, pending and done items via Trello, add new items, delete or move existing items.&amp;nbsp;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-47" vertex="1">
+          <mxGeometry x="332.57854965127024" width="217.42145034872985" height="151.46178231771748" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-29" value="&lt;font&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;TRELLO&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;u style=&quot;font-size: 12px&quot;&gt;[&lt;/u&gt;External&amp;nbsp;&lt;span style=&quot;font-size: 12px&quot;&gt;Software System&lt;/span&gt;&lt;u style=&quot;font-size: 12px&quot;&gt;]&lt;/u&gt;&lt;br&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;Stores all to do items for each category for the given board.&lt;/font&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;&amp;nbsp;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-47" vertex="1">
+          <mxGeometry x="332.57854965127024" y="278.53821768228255" width="217.42145034872985" height="151.46178231771748" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-35" value="Calls Trello API to retrieve, &lt;br&gt;delete or update&amp;nbsp;" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#23445D;labelBackgroundColor=#FCE7CD;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="T8Wpe2ZxtMlLwS92TZOT-47" source="T8Wpe2ZxtMlLwS92TZOT-29" target="T8Wpe2ZxtMlLwS92TZOT-26" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="441.58898127152105" y="288.14680538492604" as="sourcePoint" />
+            <mxPoint x="219.3550403221869" y="151.46178231771748" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-31" value="" style="endArrow=classic;html=1;strokeColor=#23445D;labelBackgroundColor=#FCE7CD;" parent="T8Wpe2ZxtMlLwS92TZOT-47" source="T8Wpe2ZxtMlLwS92TZOT-28" target="T8Wpe2ZxtMlLwS92TZOT-26" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="73.90610565213741" y="73.95768004879768" as="sourcePoint" />
+            <mxPoint x="122.89038497971686" y="20.194904309029" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-46" value="&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0)&quot;&gt;Get list of To Do Items&lt;/span&gt;&lt;br style=&quot;color: rgb(0 , 0 , 0)&quot;&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0)&quot;&gt;and make changes&lt;/span&gt;&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FFFFFF;rounded=1;labelBackgroundColor=#FCE7CD;" parent="T8Wpe2ZxtMlLwS92TZOT-31" vertex="1" connectable="0">
+          <mxGeometry x="-0.2223" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-94" value="" style="endArrow=classic;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#23445D;entryX=0.09;entryY=0.265;entryDx=0;entryDy=0;entryPerimeter=0;" parent="T8Wpe2ZxtMlLwS92TZOT-49" target="T8Wpe2ZxtMlLwS92TZOT-59" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="562" y="160" as="sourcePoint" />
+            <mxPoint x="612" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-95" value="&lt;font style=&quot;font-size: 24px&quot; color=&quot;#000000&quot;&gt;ZOOM&lt;br&gt;IN&lt;br&gt;&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FFFFFF;labelBackgroundColor=#FCE7CD;" parent="T8Wpe2ZxtMlLwS92TZOT-94" vertex="1" connectable="0">
+          <mxGeometry x="-0.2653" y="3" relative="1" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-79" value="" style="group;labelBorderColor=none;" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="1030" y="-884.23" width="1180" height="956" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-50" value="" style="group" parent="T8Wpe2ZxtMlLwS92TZOT-79" vertex="1" connectable="0">
+          <mxGeometry x="10" width="1180" height="956" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-69" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;gradientColor=none;fontColor=#FFFFFF;opacity=10;fillColor=#0000CC;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="-10" y="249.8618181818182" width="790" height="662.6818181818182" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-59" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;fontColor=#FFFFFF;opacity=10;fillColor=#6666FF;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="-50" y="10.86181818181818" width="1220" height="945.1363636363637" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-53" value="&lt;font&gt;&lt;br&gt;&lt;u&gt;&lt;br&gt;&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;br&gt;User&lt;/font&gt;&lt;br&gt;&lt;/u&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;[locahost:5000]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="80" y="29.997272727272726" width="120" height="152.0909090909091" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-54" value="&lt;font&gt;&lt;font style=&quot;font-size: 18px&quot;&gt;Web application&lt;br&gt;&lt;/font&gt;[app.py / trelloapp.py]&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;Python Technology and Flask Framework&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;GET / POST / PUT / DELETE&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;labelBorderColor=none;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="37.57854965127025" y="540.0036363636364" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-56" value="JSON request / REST" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#23445D;labelBackgroundColor=#FCE7CD;" parent="T8Wpe2ZxtMlLwS92TZOT-50" source="T8Wpe2ZxtMlLwS92TZOT-55" target="T8Wpe2ZxtMlLwS92TZOT-54" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="433.58898127152105" y="313.0322113045333" as="sourcePoint" />
+            <mxPoint x="211.3550403221869" y="164.54257260879308" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-55" value="&lt;font&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;u&gt;API&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="469.99854965127025" y="540.0080637548433" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-64" value="&lt;font&gt;&lt;b&gt;&lt;u&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;Trello&lt;/font&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;[External Software System]&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="899.9985496512702" y="459.9998819366615" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-66" value="Calls Trello API to retrieve, &lt;br&gt;delete or update&amp;nbsp;" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#23445D;labelBackgroundColor=#FCE7CD;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="T8Wpe2ZxtMlLwS92TZOT-50" source="T8Wpe2ZxtMlLwS92TZOT-64" target="T8Wpe2ZxtMlLwS92TZOT-55" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="920.5785496512699" y="320.7266278275538" as="sourcePoint" />
+            <mxPoint x="680" y="320.727644899719" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-70" value="&lt;font style=&quot;font-size: 23px&quot; color=&quot;#000000&quot;&gt;&lt;b&gt;DOCKER&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FCE7CD;strokeColor=#FFFFFF;fillColor=#0000CC;gradientColor=none;fontColor=#FFFFFF;opacity=10;arcSize=50;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="25" y="770" width="230" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-72" value="&lt;font&gt;&lt;span style=&quot;font-size: 18px&quot;&gt;Gunicorn&lt;br&gt;&lt;/span&gt;WSGI&lt;br&gt;[production]&lt;br&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;rounded=1;" parent="T8Wpe2ZxtMlLwS92TZOT-50" vertex="1">
+          <mxGeometry x="31.288549651270237" y="310.00363636363636" width="217.42145034872985" height="164.54257260879308" as="geometry" />
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-78" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#23445D;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.462;exitY=0.012;exitDx=0;exitDy=0;exitPerimeter=0;" parent="T8Wpe2ZxtMlLwS92TZOT-50" source="T8Wpe2ZxtMlLwS92TZOT-54" target="T8Wpe2ZxtMlLwS92TZOT-72" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="279.9994774082602" y="576.1836363636364" as="sourcePoint" />
+            <mxPoint x="279.99981274769743" y="439.998181818182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T8Wpe2ZxtMlLwS92TZOT-77" value="&lt;span style=&quot;&quot;&gt;HTTP&lt;br&gt;Request from User&lt;br&gt;Response to User&lt;/span&gt;" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#23445D;labelBackgroundColor=#FCE7CD;" parent="T8Wpe2ZxtMlLwS92TZOT-50" source="T8Wpe2ZxtMlLwS92TZOT-72" target="T8Wpe2ZxtMlLwS92TZOT-53" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="260" as="sourcePoint" />
+            <mxPoint x="210" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyCpD4L54i-CCeLWorp6-1" value="" style="endArrow=classic;html=1;entryX=-0.001;entryY=0.325;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="T8Wpe2ZxtMlLwS92TZOT-54" target="T8Wpe2ZxtMlLwS92TZOT-83">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1910" y="597" as="sourcePoint" />
+            <mxPoint x="2370" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
