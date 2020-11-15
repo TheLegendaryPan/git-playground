@@ -8,5 +8,5 @@ script:
 - docker run todo-app:test Test
 
 env:
-  - APP_KEY=bb61abc465f91ddcefe71b425ff32869
-  - APP_TOKEN=cb7c2516b552d93d890d7517775620bb9f9ef43b9cf93ed595ba420fd1e3ce56
+  - APP_KEY=bb61abc465f91ddcefe71b425ff32869 APP_TOKEN=cb7c2516b552d93d890d7517775620bb9f9ef43b9cf93ed595ba420fd1e3ce56
+
