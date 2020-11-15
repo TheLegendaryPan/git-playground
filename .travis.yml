@@ -1,3 +1,8 @@
 script:
 - echo "hello world"
 
+# Docker Build the Image
+- docker build --target test --tag todo-app:test .
+
+# DOcker Run to Execute Test Package
+- docker run --env-file .env todo-app:test Test
