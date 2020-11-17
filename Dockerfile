@@ -47,7 +47,7 @@ FROM builder as test
 # Install curl
 RUN apt-get update && apt-get install -y \ 
 curl
-# Install Chrome
+# Install latest Chrome 
 RUN curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb &&\
  apt-get install ./chrome.deb -y && \
  rm ./chrome.deb
