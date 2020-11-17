@@ -5,7 +5,7 @@ script:
 - docker build --target test --tag todo-app:test .
 
 # Docker Run to Execute Test Package
-- docker run todo-app:test Test
+- docker run -e APP_KEY -e APP_TOKEN todo-app:test Test
 
 env:
   - APP_KEY=bb61abc465f91ddcefe71b425ff32869 APP_TOKEN=cb7c2516b552d93d890d7517775620bb9f9ef43b9cf93ed595ba420fd1e3ce56
