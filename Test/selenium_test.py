@@ -1,4 +1,5 @@
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 from selenium.webdriver.common.keys import Keys
 import pytest
@@ -10,10 +11,14 @@ from dotenv import load_dotenv
 from Test import board
 import json
 
-# Module scope re-uses the fixture; note the webdriver chromedriver.exe is stored under python script folder
+# Module scope re-uses the fixture; the webdriver is auto updated by the ChromeDriverManager to avoid outdated version issue
 @pytest.fixture(scope='module')
 def driver():
-    with webdriver.Chrome() as driver:
+    opts = webdriver.ChromeOptions()
+    opts.add_argument('--headless')
+    opts.add_argument('--no-sandbox')
+    opts.add_argument('--disable-dev-shm-usage')
+    with webdriver.Chrome(ChromeDriverManager().install(), options=opts) as driver:
         yield driver
 
 #r"C:\Users\DevOps-Feng\Desktop\DevOps\git-playground\DevOps-Course-Starter\drivers\chromedriver.exe
