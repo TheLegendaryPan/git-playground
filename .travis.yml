@@ -19,7 +19,8 @@ script:
 - echo "All Tests Have Been Completed"
 
 # DockerHubLogin
-- docker login --username docker_login --password docker_pass 
+- echo $docker_login $docker_pass
+- docker login --username "$docker_login" --password "$docker_pass"
 
 # Docker Build the Production Image
 - docker build --target prod --tag todo-app:prod .
