@@ -4,9 +4,8 @@ script:
 #- echo $APP_KEY $APP_TOKEN
 #Test build 
 
-# Docker Build the Test Image
+# Docker Build the Test Images
 - docker build --target test --tag todo-app:test .
-- docker build --target production --tag todo-app:prod .
 
 # Docker Run to Execute Unit Test Package
 - echo "Running Unit Tests"
@@ -24,7 +23,8 @@ script:
 # DockerHubLogin
 - docker login --username "$docker_login" --password "$docker_pass"
 
-# DockerPush
+# Docker Build the Prod and DockerPush
+- docker build --target production --tag todo-app:prod .
 - docker push legendarypan/todo-app:prod
 
 env:
