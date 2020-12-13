@@ -25,6 +25,7 @@ script:
 
 # Docker Build the Prod and DockerPush
 - docker build --target production --tag todo-app:prod .
+- docker tag todo-app:prod legendarypan/todo-app:prod
 - docker push legendarypan/todo-app:prod
 
 env:
