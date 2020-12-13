@@ -1,8 +1,8 @@
 script:
-- echo $APP_KEY $APP_TOKEN
+#- echo $APP_KEY $APP_TOKEN
 #Test build
 
-# Docker Build the Image
+# Docker Build the Test Image
 - docker build --target test --tag todo-app:test .
 
 # Docker Run to Execute Unit Test Package
@@ -16,6 +16,14 @@ script:
 # Docker Run to Execute Unit E2E Selenium Package
 - echo "Running E2E Tests"
 - docker run -e APP_KEY -e APP_TOKEN -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e SECRET_KEY todo-app:test Test/selenium_test.py
+- echo "All Tests Have Been Completed"
+
+# DockerHubLogin
+- docker login --username docker_login --password docker_pass 
+
+# Docker Build the Production Image
+- docker build --target prod --tag todo-app:prod .
+- docker push legendarypan/todo-app:prod
 
 env:
   global:
@@ -26,3 +34,5 @@ env:
     - list_id_Done=5ef1186dcbda554f16c6d66f
     - secure: i5EQkYyEcUnR/G5hONMVx4JkdEUFGb2FLSVr8u/MvWXdIgmfdeiLeLJKwqeF+J1ojsjsnBkBO2DXI//7mdSVDcRPkAaTbeLJLvT22bK4wZFjl6qxrq4j8U04sHxXR/IPbTFj5nefDybVDLaaqATFcqn3GTb0fBwUVNMchEo2IXl9/tkM+YLGfKhVpg9R1CDVRK7eoMbYAzgxzP1Do1udsuS8YE4+ajivG5ZiZC07/NDzJaADf+ArHNZ++r2LuA0bCvMjYe4GgHy7b3LM9hiPmXEyMT5u59KUp439g5O2hhEvlBxfU+meOgryFJLyoZAdCS3PTzJR7gCQLg/Lxnm6SnIL1wpxz1CP1Fmpb/z+toCDSVW5X1PT6/Ak9COEAjdBZD0DbsNf/HKX6I4YmdlP/el0Dp3gOUmHnv6NhT14BKznVNODu3NeDr6HzE7m3V+CaZ/Mp2oG6S1nbFQLQaw9/U8uHottONd0f432mYlS3kHhh/wxq4vc6cb0ZJT+fYHz2erUnjsMvqNFsd7CDEZnx8N56FiA4IVxLKy6/kCvwydxDQMg8+0KWEd5SdMETrALPbK26YKg8ySMK0fhfNmwSz4k7sRKsGyRrQo2LJuPe4OXPxzqADyuGCv1JNK4YiU3ZlbdYBVA1Eo5CkHk5sYcLgQiNAuWaPUNpVhm74p0uEQ=
     - secure: 5wo/rbXNuxaBr0uW799Qjl+XsrHvvaEvJ4lBrtE2ccPs5s6+8se42tT1rycwtbIcAROR00ZJy6B1ssnehns91prgIxv83QV1Tign+xStThO8GDfP8ofSlhUXXP9UWH4gUFYj1o3o7y1SQ7C+L+TptLXQOBYbJln/OYQYocE9CPriVAO9HCk9W578XNyoOt9SZzIpLHS6zN7GQv0ML/57kXRTEZBGj+T/EBonIvRbqwT6rJpsVCHt/O6knDi1ZuFFU3+cfSlZmFlQshfcBAn6vVLLPu9//Jnm3DGpikjCS6sXaP21DzlxcG+/ghR0DiUbvvVZeCfzxjPkLkNyMdNcHsr4DPBJU0oE05jcPDZ+Bw1VSuFUtUprivaAV3i8neafKtq92RutobyMerRIV8F5IHt968qWZ62nnJuFdcYhy5yWfJwaAcARJZPax6gm7jCRNL2s2St+t6aPrazRMZd4GSXxCNxFK795cFy+aU2UNdUPV93cpRtkrAT2Yx8nA5DLwVTZWgebGRgIJsJ5LqUbj9H6K5C9jeSKL5fLuKLZRcCa9lDM46t5zG3DqtzoaXZuQ/jhnCjRXue0otNdf+7Y9dQj7ic20n8J87OcQziqLBe1aQPs4RQfZpP5F8SfnH1iN1H6R9lhtjY20Rp6sypZoWffkZtuz2UB4uh/+4qInEY=
+    - secure: 7O6eN0xAm6elfanc+IDgn809IpeSG/NTgjQCTPkVl73yEZmk1bNOdSlqlV/WgIcvXrBe3bkY3zA4H6qTjtbVGDRrGKlVPLbb2kAdU1Rvx9TALa2iXiNCwX3DBxbdtEMhCbaUiaPAgRabNNxJZ9n94ltf/X6nV5Z27rn3d1QRM63mIS5oEjbwvNKplT2xtDxBIcP3MkHOwEB2k92pZLtmvM+EZbZU+LYd0AGg82sITZX6sewHsMb1m06eNLqXZzBFuGxTtnGwpO5SIXFI6PwlkbZp86GHjNMUvVTmwRxB3mDKQRar2Gx5PpgUH4NWjridBG/sL8ZInkjRa9C+issz5zd0/NRLQ5TgCETYdYnFuTWrJSTGCjgxQlcgylulqclWQ9zK6NXPDLku9+o8ypOHUm7XxC03wOaFfq2m0ilnrftPuTzBc0vGmCvD0ArIoTNDIbs8N/SM/Ma2uoodGy830YNEbka0uOuYS0NgO2Hh33LgWUh7rKYE1hcSRL+lY9OzNmEPM8JkxdfxqAA3SoSchj0UinS5LsrL0tYBXDxxgY0u1uzpm8Bp4p+SL5y5nrr4kS0br23IWS3z/tw+SwgBmX7Dk5Sac1SSoLyo6FLHGzJJOp1Cpz+bCCqLfoBMo8SOZvyHmvuw1HNEncnuQuyOnBEOaUj3dC/Do717v6TjNmY=
+    - secure: JiKGdvaPsYEh0WrRcEdEUD5+8PFlglqMXe2qFJv5SeyPLeshcuDRcd7bWF3MLoQxCRxuFcGrvC+4CHJAbv1f3+BtNfRAs661h1kmVOBsfO2E3e8pwqGEwhfAdKJG5cAzL4MMa9Y2j+5YSImZE8OMCPxfhsUK7/ByPNFdgpcRsCqDHbOjFZlAUWCxAmDeOkSG3fsQ24nk/tmtHmeQ7JVd0cJaFF6ZEc0Ur4P/v2SqSm7VVl2pmNTOd+ItrHMmGRiTExGQ/ICw/60YLwglyLDiY05tlnNKBbVEhEdqMezWQTEv65rzjtcl7iR16a3IW//bRdW8qJOECzswzDYXsr50UwBq1vY/vsg28VPkROJTdbyKvdR3JyrMzUaSaK5n+zENWgPd7aFgcJSfUbRknEydaBt5mQv3/8NrUSraBIonqK4RWD//nUx6hv7MNiLR1gHvaL0mqPn5YnrxsFx3NLc8QsgkHXVclGNhuGKZB97tiZXuN+Ik1QUyKZsxpHggn4qBLztdOVVXV2DDf3lfDxpx95PUVh4QGCTxHBVv+J5yjtit5k3jqARqwWUDo8AK3tvRuQR7Bn6rFfoZBxS2n2IojbeGhFeMFkJKmhbDn5wVKaRRCrJkTLKH0luu1m2/0gjSWtVCYBzB6wtzwuF/IqDeJewtcsWy+GQxp0rPKKAlSEI=
