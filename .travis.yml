@@ -1,3 +1,5 @@
+services:
+  - docker
 script:
 #- echo $APP_KEY $APP_TOKEN
 #Test build 
@@ -18,12 +20,13 @@ script:
 - docker run -e APP_KEY -e APP_TOKEN -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e SECRET_KEY todo-app:test Test/selenium_test.py
 - echo "All Tests Have Been Completed"
 
-# DockerHubLogin
-- echo $docker_login $docker_pass
-- docker login --username "$docker_login" --password "$docker_pass"
-
 # Docker Build the Production Image
 - docker build --target prod --tag todo-app:prod .
+
+# DockerHubLogin
+- docker login --username "$docker_login" --password "$docker_pass"
+
+# DockerPush
 - docker push legendarypan/todo-app:prod
 
 env:
