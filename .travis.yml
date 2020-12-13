@@ -1,6 +1,6 @@
 script:
 #- echo $APP_KEY $APP_TOKEN
-#Test build 
+#Test build
 
 # Docker Build the Test Image
 - docker build --target test --tag todo-app:test .
