@@ -28,9 +28,10 @@ FROM builder as production
 #RUN poetry config virtualenvs.create false \
 #    && poetry install --no-interaction
 # set my port on container to 5001
-# Removed expose 5001 due to port binding issue on Heroku
+# Removed expose and port bind for 5001 due to port binding issue on Heroku
 # EXPOSE 5001
-CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--log-level=debug", "app:create_app()"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--log-level=debug", "app:create_app()"]
+CMD ["gunicorn", "--log-level=debug", "app:create_app()"]
 
 # Configure for development - multi build
 FROM builder as development
