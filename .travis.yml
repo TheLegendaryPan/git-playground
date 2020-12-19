@@ -28,6 +28,13 @@ script:
 - docker tag todo-app:prod legendarypan/todo-app:prod
 - docker push legendarypan/todo-app:prod
 
+# Pull latets image from docker hub and deploy to Heroku aded 12/19th
+- docker pull -a legendarypan/todo-app
+- heroku container:login
+- docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
+- docker push registry.heroku.com/fengs-todo-app/web
+- heroku container:release web -a fengs-todo-app
+
 env:
   global:
     - SECRET_KEY=secret-key
