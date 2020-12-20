@@ -31,12 +31,11 @@ script:
 # Before Install
 - wget -qO- https://toolbelt.heroku.com/install.sh | sh #installed heroku CLI
 - heroku plugins:install @heroku-cli/plugin-container-registry
+- heroku update
 - docker login --username _ --password=65ba83f6-5c69-43ca-be93-885627c2e6ee registry.heroku.com
 - heroku auth:whoami
 # Deploy to Heroku added 12/19th
-#- heroku login 
 - heroku container:login
-#- heroku update
 - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
 - docker push registry.heroku.com/fengs-todo-app/web
 # heroku container:push web --app fengs-todo-app
