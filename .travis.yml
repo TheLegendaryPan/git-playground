@@ -33,7 +33,7 @@ script:
 - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 - heroku plugins:install @heroku-cli/plugin-container-registry
 # - heroku update
-- docker login --username _ --password=65ba83f6-5c69-43ca-be93-885627c2e6ee registry.heroku.com
+- docker login --username=panyongfeng1@gmail.com --password=65ba83f6-5c69-43ca-be93-885627c2e6ee registry.heroku.com
 - heroku container:login
 - heroku auth:whoami
 - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
