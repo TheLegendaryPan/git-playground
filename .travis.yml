@@ -46,6 +46,7 @@ deploy:
 # heroku container:push web --app fengs-todo-app
 - heroku container:release web --app fengs-todo-app
 
+
 env:
   global:
     - SECRET_KEY=secret-key
