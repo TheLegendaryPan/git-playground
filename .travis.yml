@@ -30,7 +30,7 @@ script:
 
 # Before Install
 - wget -qO- https://toolbelt.heroku.com/install.sh | sh #installed heroku CLI
-- docker login -u "$heroku_login" --password="$heroku_api" registry.heroku.com #logged in
+- docker login --username _ --password=$heroku_api registry.heroku.com
 
 # Deploy to Heroku added 12/19th
 - heroku container:push web --app fengs-todo-app
