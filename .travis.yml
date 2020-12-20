@@ -31,12 +31,12 @@ script:
 # Pre-deploy Install
 # - wget -qO- https://toolbelt.heroku.com/install.sh | sh #installed heroku CLI
 - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-- heroku plugins:install @heroku-cli/plugin-container-registry
 - heroku update
+- heroku plugins:install @heroku-cli/plugin-container-registry
 
 # Deploy
 # using heroku credentials
-- docker login --username=$heroku_login --password=$heroku_api registry.heroku.com
+- docker login --username=panyongfeng1@gmail.com --password=65ba83f6-5c69-43ca-be93-885627c2e6ee registry.heroku.com
 - docker pull -a legendarypan/todo-app # get latest image from dockerhub
 - heroku container:login
 - heroku auth:whoami
