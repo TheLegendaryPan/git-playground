@@ -34,18 +34,13 @@ script:
 - heroku plugins:install @heroku-cli/plugin-container-registry
 # - heroku update
 - docker login --username=panyongfeng1@gmail.com --password=65ba83f6-5c69-43ca-be93-885627c2e6ee registry.heroku.com
-
-deploy:
-  provider: heroku
-  api_key: udXbyMC97UWnDS55nboOFBeoepAk1If7S8JdSJcaCQqIHt/E8pJf9f0gOAyk9+wkHPGCZFGuuzyth2iJEtsZ09t03TaPmX521Nl95HOYcRYbexLzRBsRsrnfj1eQRMnq+9FrnJJxX+5yf0vEent263ay7Getp8T4PYYyGQply7t/hkkjvGUnlWbrDRGhv/uMMwq89AD6IBa6kL2SNjIjIs9kiRPs/ei89+9S87lRa6RA1NB5q5LukS+nmpg54CDDV/dQB6l167ILa/K/z8WdqO55FwtVpGKRpYo30RM+O9gTfXVTCLXACVIgIcjXdfb9OYFzJ9wDOx3Ajf1zma8lNuKewFkaYKKTQjMCjtx1bwZiglD6Mse7YvqjMyYvEpJGfNa8Yk8BjqMIPQVqNJygn+MFjJrNGHwzYA/YNnhakGGOqeGnEStRjKDzJs1c7Xnrsjb5Jl4XfbUC+ir8ht5SZVe5dsrZHhLEdZJcx1oV1v9bzIpRrlHL2AWJZugmZXnkbPRwYZVAB5N/NW/swG/r3nz4b3eANvnZnK7y2XnU8X7Og/QX02QEFGz0SC1SckpPUbOL/tettlxEK1LOrj8GpKIGHxv42C/XNLNIh4fxrLonh8YsDN7EtXX+0RUhR7yH5u5HUU10YApe+rCf1itmJCa7pqIARar7YUKqhn7gAYs=
-  app: fengs-todo-app
+- heroku login
 - heroku container:login
 - heroku auth:whoami
 - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
 - docker push registry.heroku.com/fengs-todo-app/web
 # heroku container:push web --app fengs-todo-app
 - heroku container:release web --app fengs-todo-app
-
 
 env:
   global:
