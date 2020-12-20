@@ -28,13 +28,13 @@ script:
 - docker tag todo-app:prod legendarypan/todo-app:prod
 - docker push legendarypan/todo-app:prod
 
+# Before Install
+- wget -qO- https://toolbelt.heroku.com/install.sh | sh #installed heroku CLI
+- docker login -u "$heroku_login" --password="$heroku_api" registry.heroku.com #logged in
+
 # Deploy to Heroku added 12/19th
-deploy:
-  provider: heroku
-  api_key: 
-    secure: NaMoxGMXliuBrll36xjUa4Nxk511S5omKlfHeGvOs6tx6VkB6vERsAQOkJo+vfRBGTK1slkP/NUK2SFvwGkufotr9wYmQZei9yUB6poJuBwz4XXj3QG+3OqMM+fprZviPaJR3gSXEWTqUZztA6a2QF4azG3diqHkeuZMUqqPLdBhvNp8lGprPWt1CJwXCbdMyl/oP+jOugQ3DivhggDpqRgUN8aytgiXOF16JKZ8uLkpEKfK2knMMXcMASpCOkS64Gozm/E93WtSYdWgbNcxu19xfotpf9KzGt4EVNr4KkLIFscQ/oW5EMRgRoYdKEYK/NnKcVIYx5MwKCqyrGSKGda0cUdMFtMH45J2SCP3/woIVh+ro1s27FIu0L01jQpwfnKgLJxFWPy2B3Y/PD29YJFxn3JGdSW7euRJjfAXjXm8DlI6JPiY/yJEG0S4Kt/WWOcOjV5MT8mD2vswgvAiMXi9xYNiL85oTYiRBThmA7M+gilXErRr+O/0C4LqDrUsIa2v0Ed7tTucEgvqxgYnXgtiRaKqf+i1DtwrMamI+YM6zV2VibzNbWH7WDDd7dvH4DBCxA5PYXkFhALBQAYeFugPXjvoFuz7kBMI4WrK5xA2O32f65A7S/A1vNCI77LZbd7+hfj7ulUyb/ch+W7/adJOpv1A/w6mwLL3rBgAvdQ=
-  app: fengs-todo-app
-  on: module_8
+- heroku container:push web --app fengs-todo-app
+- heroku container:release web --app fengs-todo-app
 
 env:
   global:
