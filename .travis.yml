@@ -36,7 +36,7 @@ script:
 
 # Deploy
 # using heroku credentials
-- docker login --username "$heroku_login" --password "$heroku_api" registry.heroku.com
+- docker login --username=$heroku_login --password=$heroku_api registry.heroku.com
 - docker pull -a legendarypan/todo-app # get latest image from dockerhub
 - heroku container:login
 - heroku auth:whoami
