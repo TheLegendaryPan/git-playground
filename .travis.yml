@@ -37,8 +37,9 @@ script:
 
 # Deploy
 # using heroku credentials
-- docker login --username=panyongfeng1@gmail.com --password=65ba83f6-5c69-43ca-be93-885627c2e6ee registry.heroku.com
+- docker login --username=panyongfeng1@gmail.com --password=56d5ebc9-f726-426a-b99f-c4a41c07c0ba registry.heroku.com
 - docker pull -a legendarypan/todo-app # get latest image from dockerhub
+# old heroku key - 65ba83f6-5c69-43ca-be93-885627c2e6ee
 #- heroku container:login
 #- heroku auth:whoami
 - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
