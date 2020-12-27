@@ -46,9 +46,9 @@ script:
 deploy:
   provider: script
   script:
-    docker push registry.heroku.com/fengs-todo-app/web
+    - docker push registry.heroku.com/fengs-todo-app/web
     # heroku container:push web --app fengs-todo-app
-    heroku container:release web --app fengs-todo-app
+    - heroku container:release web --app fengs-todo-app
 
 env:
   global:
