@@ -38,9 +38,10 @@ script:
 # - docker pull -a legendarypan/todo-app # get latest image from dockerhub
 # old heroku key - 65ba83f6-5c69-43ca-be93-885627c2e6ee
 #- heroku container:login
-#- heroku auth:whoami
+#- heroku auth:whoami 
 - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
 
+# Trying diff deploy method
 deploy:
   provider: script
   script:
