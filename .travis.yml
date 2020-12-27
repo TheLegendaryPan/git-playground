@@ -33,7 +33,6 @@ script:
 # - heroku update
 # - heroku plugins:install @heroku-cli/plugin-container-registry
 
-# Deploy
 # using heroku credentials
 - docker login --username=panyongfeng1@gmail.com --password=56d5ebc9-f726-426a-b99f-c4a41c07c0ba registry.heroku.com
 # - docker pull -a legendarypan/todo-app # get latest image from dockerhub
@@ -41,9 +40,13 @@ script:
 #- heroku container:login
 #- heroku auth:whoami
 - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
-- docker push registry.heroku.com/fengs-todo-app/web
-# heroku container:push web --app fengs-todo-app
-- heroku container:release web --app fengs-todo-app
+
+deploy:
+  provider: script
+  script:
+    docker push registry.heroku.com/fengs-todo-app/web
+    # heroku container:push web --app fengs-todo-app
+    heroku container:release web --app fengs-todo-app
 
 env:
   global:
