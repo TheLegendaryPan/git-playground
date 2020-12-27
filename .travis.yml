@@ -50,7 +50,7 @@ deploy:
   # heroku container:push web --app fengs-todo-app
   - heroku container:release web --app fengs-todo-app
   on:
-  all_branches: true
+    repo: travis-ci/git-playground
 
 env:
   global:
