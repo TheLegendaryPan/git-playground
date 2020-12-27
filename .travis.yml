@@ -50,7 +50,7 @@ deploy:
   # heroku container:push web --app fengs-todo-app
   - heroku container:release web --app fengs-todo-app
   on:
-  branch: module_8
+  all_branches: true
 
 env:
   global:
