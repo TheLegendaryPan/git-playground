@@ -29,16 +29,14 @@ script:
 - docker push legendarypan/todo-app:prod
 
 # Pre-deploy Install
-# - wget -qO- https://toolbelt.heroku.com/install.sh | sh #installed heroku CLI
-# - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 - curl -sS https://cli-assets.heroku.com/install.sh | sh
-- heroku update
+# - heroku update
 # - heroku plugins:install @heroku-cli/plugin-container-registry
 
 # Deploy
 # using heroku credentials
 - docker login --username=panyongfeng1@gmail.com --password=56d5ebc9-f726-426a-b99f-c4a41c07c0ba registry.heroku.com
-- docker pull -a legendarypan/todo-app # get latest image from dockerhub
+# - docker pull -a legendarypan/todo-app # get latest image from dockerhub
 # old heroku key - 65ba83f6-5c69-43ca-be93-885627c2e6ee
 #- heroku container:login
 #- heroku auth:whoami
