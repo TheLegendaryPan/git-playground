@@ -51,7 +51,9 @@ deploy:
   - heroku container:release web --app fengs-todo-app
   on:
     repo: TheLegendaryPan/git-playground
-    branch: module_8
+    branch: 
+      only:
+        - module_8
 
 env:
   global:
