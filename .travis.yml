@@ -41,14 +41,13 @@ script:
 #- heroku container:login
 #- heroku auth:whoami 
 - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
+- docker push registry.heroku.com/fengs-todo-app/web
 
 # Trying diff deploy method
 deploy:
   provider: script
-  script:
-  - docker push registry.heroku.com/fengs-todo-app/web
+  script: heroku container:release web --app fengs-todo-app
   # heroku container:push web --app fengs-todo-app
-  - heroku container:release web --app fengs-todo-app
   on:
     branch: module_8
 #    repo: TheLegendaryPan/git-playground
