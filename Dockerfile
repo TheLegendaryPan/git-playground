@@ -31,7 +31,10 @@ FROM builder as production
 # Removed expose and port bind for 5001 due to port binding issue on Heroku
 # EXPOSE 5001
 # CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--log-level=debug", "app:create_app()"]
-CMD ["gunicorn", "--log-level=debug", "app:create_app()"]
+# good cmd 01/17/21
+# CMD ["gunicorn", "--log-level=debug", "app:create_app()"]
+# Testing below port binding with $PORT added to Heroku config vars
+CMD ["gunicorn --log-level=debug --bind 0.0.0.0:$PORT app:create_app()"]
 
 # Configure for development - multi build
 FROM builder as development
