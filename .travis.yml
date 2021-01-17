@@ -44,9 +44,9 @@ deploy:
   script: heroku container:release web --app fengs-todo-app
   # heroku container:push web --app fengs-todo-app
   on:
-    all_branches: true
+  #  all_branches: true
   #  branch: module_8
-  #  branch: master (not permitted as I'm on branch module_8)
+     branch: master # (not permitted as I'm on branch module_8)
      
 
 env:
