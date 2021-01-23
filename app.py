@@ -7,7 +7,7 @@ from view_model import ViewModel
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('flask_config.Config')
+#    app.config.from_object('flask_config.Config')  #can remove to delete secret key config
 
     @app.route('/') 
     def root():
