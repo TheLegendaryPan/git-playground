@@ -2,12 +2,28 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 from trelloapp import Trello
 import json
-from trello_class import TrelloItem
+from todo_item import TodoItem #replaced Trello
 from view_model import ViewModel
+import pymongo
+from bson import ObjectId, json_util
+
+# from flask_pymongo import PyMongo
+
+myclient = pymongo.MongoClient("mongodb+srv://fpan:victor2021@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority")    
+mydb = myclient["ToDo"]
+mycollection = mydb["All Items"]
+
+#   alternative mongo db connection using flask_pymongo
+#   app.config['MONGO_URI'] = 'mongodb+srv://fpan:victor2021>@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority'
+#   mongo.init_app(app)
+
+        #test insert and delete into DB works
+        #mycollection.insert_one({"_id":0, "title":"test insert into DB", "status":"To Do"})
+        #mycollection.delete_one({"_id":0, "title":"test insert into DB", "status":"To Do"})
 
 def create_app():
     app = Flask(__name__)
-#    app.config.from_object('flask_config.Config')  #can remove to delete secret key config
+#   app.config.from_object('flask_config.Config')  #removed secret key config
 
     @app.route('/') 
     def root():
@@ -16,11 +32,24 @@ def create_app():
     @app.route('/items/get_all_cards', methods = ["GET"])
     def getAll(): 
 
-        todo_resp = Trello().get_all_cards_from_board()
-        todo_dict = json.loads(todo_resp)
-        todo_list = [ TrelloItem.from_trello_card(card) for card in todo_dict ]
+    #    removed below trello api data
+    #    todo_resp = Trello().get_all_cards_from_board()
+    #    todo_dict = json.loads(todo_resp)
+    #    todo_list = [ TrelloItem.from_trello_card(card) for card in todo_dict ]
+    #    return render_template('all_items.html', todos = ViewModel(todo_list))
 
-        return render_template('all_items.html', todos = ViewModel(todo_list))
+         todo_resp = mycollection.find({"status": "To Do"}) 
+         print("Todo_resp")
+         print(todo_resp) # find method returns a cursor instance for iteration
+        
+         todo_list = [TodoItem.from_mongo_card(card) for card in todo_resp]
+      #   for doc in todo_resp:
+      #      todo_list.append(doc) # converting the cursor response into a list
+
+         print("Todo_list")
+         print(todo_list)
+
+         return render_template('all_items.html', todos = ViewModel(todo_list))
 
     @app.route('/Items_Done', methods = ['POST', 'GET'])
     def Items_Done():
