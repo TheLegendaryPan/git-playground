@@ -22,7 +22,7 @@ class TodoItem: # renamed from TrelloItem and renamed file from trello_class.py 
     @classmethod # new class for mongo DB data
     def from_mongo_card(cls, card):
 #       update_time = datetime.strptime(card["update_time"],'%Y-%m-%dT%H:%M:%S.%fZ') #date converstion from trello string to date
-        return cls(card["id"], card["title"], card["status"], card["update_time"])
+        return cls(card["_id"], card["title"], card["status"], card["update_time"])
 
     @classmethod
     def from_list_id(cls, id, title, list_id, update_time):

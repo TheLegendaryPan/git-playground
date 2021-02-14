@@ -46,8 +46,8 @@ deploy:
   on:
   #  all_branches: true
   #  branch: module_8
-  #  branch: master # (revert back to this after merging module_9)
-     branch: module_9
+     branch: master # (revert back to this after merging module_9)
+  #  branch: module_9
 
 env:
   global:
