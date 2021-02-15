@@ -64,10 +64,7 @@ def create_app():
             if request.form['action'] == 'Mark as Done':
                 card_name = request.form['card_name']
                 card_id = request.form['card_id']
-                print("Card ID")
-                print(card_id)
                 myquery = {"_id": ObjectId(card_id)}
-                print(myquery)
                 newvalue = {"$set": {"status": "Done"}}
                 mycollection.update_one(myquery, newvalue)
             elif request.form['action'] == 'Delete':
