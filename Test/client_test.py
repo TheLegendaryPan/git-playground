@@ -4,6 +4,8 @@ from trelloapp import Trello
 from todo_item import TodoItem
 from dotenv import find_dotenv, load_dotenv
 import json
+import pymongo
+from bson import ObjectId, json_util
 
 @pytest.fixture
 def client():
