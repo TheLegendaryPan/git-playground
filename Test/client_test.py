@@ -16,9 +16,11 @@ def client():
     # Use our test integration config instead of the 'real' version
     # file_path = find_dotenv('.env.test') removed post MONGO connection
     # load_dotenv(file_path, override=True) removed post MONGO connection
-    load_dotenv()
     # Create the new app.
     test_app = app.create_app()
+    load_dotenv()
+    # MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
+    # MONGO_PASS = os.getenv("MONGO_PASS")  
     # Use the app to create a test_client that can be used in our tests.
     with test_app.test_client() as client:
         yield client
