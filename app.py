@@ -7,12 +7,18 @@ from view_model import ViewModel
 import pymongo
 from bson import ObjectId, json_util
 from datetime import datetime
+from dotenv import load_dotenv  #to invoke .env file
+import os
 
 def create_app():
     app = Flask(__name__)
     # app.config.from_object('flask_config.Config')  #removed secret key config
 
-    myclient = pymongo.MongoClient("mongodb+srv://fpan:victor2021@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority")    
+    load_dotenv()
+    MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
+    MONGO_PASS = os.getenv("MONGO_PASS")  # take .env from dotenv
+
+    myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
     mydb = myclient["ToDo"]
     mycollection = mydb["All Items"]
 
@@ -23,7 +29,7 @@ def create_app():
     @app.route('/items/get_all_cards', methods = ["GET"])
     def getAll(): 
 
-        myclient = pymongo.MongoClient("mongodb+srv://fpan:victor2021@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority")    
+        myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
         mydb = myclient["ToDo"]
         mycollection = mydb["All Items"]
 
