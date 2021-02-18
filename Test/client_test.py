@@ -19,8 +19,13 @@ def client():
     # Create the new app.
     test_app = app.create_app()
     load_dotenv()
-    # MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
-    # MONGO_PASS = os.getenv("MONGO_PASS")  
+    MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
+    MONGO_PASS = os.getenv("MONGO_PASS")  
+
+    myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
+    mydb = myclient["ToDo"]
+    mycollection = mydb["All Items"]
+
     # Use the app to create a test_client that can be used in our tests.
     with test_app.test_client() as client:
         yield client
