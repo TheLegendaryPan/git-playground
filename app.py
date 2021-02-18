@@ -8,23 +8,13 @@ import pymongo
 from bson import ObjectId, json_util
 from datetime import datetime
 
-# from flask_pymongo import PyMongo
-
-myclient = pymongo.MongoClient("mongodb+srv://fpan:victor2021@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority")    
-mydb = myclient["ToDo"]
-mycollection = mydb["All Items"]
-
-#   alternative mongo db connection using flask_pymongo
-#   app.config['MONGO_URI'] = 'mongodb+srv://fpan:victor2021>@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority'
-#   mongo.init_app(app)
-
-        #test insert and delete into DB works
-        #mycollection.insert_one({"_id":0, "title":"test insert into DB", "status":"To Do"})
-        #mycollection.delete_one({"_id":0, "title":"test insert into DB", "status":"To Do"})
-
 def create_app():
     app = Flask(__name__)
-#   app.config.from_object('flask_config.Config')  #removed secret key config
+    # app.config.from_object('flask_config.Config')  #removed secret key config
+
+    myclient = pymongo.MongoClient("mongodb+srv://fpan:victor2021@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority")    
+    mydb = myclient["ToDo"]
+    mycollection = mydb["All Items"]
 
     @app.route('/') 
     def root():
@@ -33,33 +23,18 @@ def create_app():
     @app.route('/items/get_all_cards', methods = ["GET"])
     def getAll(): 
 
-    #    removed below trello api data
-    #    todo_resp = Trello().get_all_cards_from_board()
-    #    todo_dict = json.loads(todo_resp)
-    #    todo_list = [ TrelloItem.from_trello_card(card) for card in todo_dict ]
-    #    return render_template('all_items.html', todos = ViewModel(todo_list))
+        myclient = pymongo.MongoClient("mongodb+srv://fpan:victor2021@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority")    
+        mydb = myclient["ToDo"]
+        mycollection = mydb["All Items"]
 
-         todo_resp = mycollection.find() 
-         print("Todo_resp")
-         print(todo_resp) # find method returns a cursor instance for iteration
-        
-         todo_list = [TodoItem.from_mongo_card(card) for card in todo_resp]
-      #   for doc in todo_resp:
-      #   todo_list.append(doc) # converting the cursor response into a list
+        todo_resp = mycollection.find() # find method returns a cursor instance for iteration
+    
+        todo_list = [TodoItem.from_mongo_card(card) for card in todo_resp] ## returns list of dict
 
-         return render_template('all_items.html', todos = ViewModel(todo_list))
+        return render_template('all_items.html', todos = ViewModel(todo_list))
 
     @app.route('/Items_Done', methods = ['POST', 'GET'])
     def Items_Done():
-    #    if request.method == 'POST':
-    #        if request.form['action'] == 'Mark as Done':
-    #            card_name = request.form['card_name']
-    #            card_id = request.form['card_id']
-    #            Trello().move_card_to_done(card_id)
-    #        elif request.form['action'] == 'Delete':
-    #            card_id = request.form['card_id']
-    #            Trello().delete_card(card_id)
-    #            
         if request.method == 'POST':
             if request.form['action'] == 'Mark as Done':
                 card_name = request.form['card_name']
@@ -76,16 +51,6 @@ def create_app():
 
     @app.route('/Items_To_Do', methods = ['POST', 'GET'])
     def Items_To_Do():
-      #  if request.method == 'POST':
-      #      if request.form['action'] == 'Mark as To Do':
-      #          card_name = request.form['card_name']
-      #          card_id = request.form['card_id']   
-      #          Trello().move_card_to_do(card_id)
-      #      elif request.form['action'] == 'Delete':
-      #          card_id = request.form['card_id']
-      #          Trello().delete_card(card_id)
-      #  return redirect("/")
-
         if request.method == 'POST':
             if request.form['action'] == 'Mark as To Do':
                 card_name = request.form['card_name']
@@ -106,11 +71,6 @@ def create_app():
 
     @app.route('/items/Items_To_Add', methods = ['POST', 'GET'])
     def Items_To_Add():
-        #if request.method == 'POST':
-        #    card_name=request.form['card_name']
-        #    Trello().create_new_card(card_name)
-        # return redirect("/")
-
         if request.method == 'POST':
             card_name=request.form['card_name']
             mycollection.insert_one({"title":card_name, "status":"To Do", "update_time": datetime.now()})
