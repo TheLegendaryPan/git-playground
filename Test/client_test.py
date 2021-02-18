@@ -8,6 +8,8 @@ import json
 import pymongo
 from bson import ObjectId, json_util
 from unittest.mock import patch, Mock
+from dotenv import load_dotenv  #to invoke .env file
+import os
 
 @pytest.fixture
 def client():

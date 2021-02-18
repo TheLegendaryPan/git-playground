@@ -3,6 +3,10 @@ from todo_item import TodoItem
 from view_model import ViewModel
 import pytest
 from datetime import datetime, timedelta, date
+from dotenv import load_dotenv  #to invoke .env file
+import os
+
+load_dotenv()
 
 def test_filters_by_status(): # first test to see if view model item matches each status
     created_todo = TodoItem(1, "Test in progress Todo", "To Do", datetime.now())
