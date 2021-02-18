@@ -11,6 +11,8 @@ from unittest.mock import patch, Mock
 from dotenv import load_dotenv  #to invoke .env file
 import os
 
+load_dotenv()
+
 @pytest.fixture
 def client():
     # Use our test integration config instead of the 'real' version
