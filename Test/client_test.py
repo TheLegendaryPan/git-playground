@@ -43,6 +43,7 @@ def test_index_page2(client):
 
 @patch('pymongo.MongoClient')
 def test_index_page_with_mock(mock_mongo_card, client):
+    load_dotenv() # added
     MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
     MONGO_PASS = os.getenv("MONGO_PASS")  
 
