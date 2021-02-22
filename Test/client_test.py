@@ -14,11 +14,10 @@ import os
 @pytest.fixture
 def client():
     # Use our test integration config instead of the 'real' version
-    # file_path = find_dotenv('.env.test') removed post MONGO connection
-    # load_dotenv(file_path, override=True) removed post MONGO connection
+    file_path = find_dotenv('.env.test') 
+    load_dotenv(file_path, override=True) 
     # Create the new app.
     test_app = app.create_app()
-    load_dotenv() # added
     # Use the app to create a test_client that can be used in our tests.
     with test_app.test_client() as client:
         yield client
@@ -43,14 +42,6 @@ def test_index_page2(client):
 
 @patch('pymongo.MongoClient')
 def test_index_page_with_mock(mock_mongo_card, client):
-    load_dotenv() # added
-    MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
-    MONGO_PASS = os.getenv("MONGO_PASS")  
-
-    myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
-    mydb = myclient["ToDo"]
-    mycollection = mydb["All Items"]
-
     mock_mongo_card.return_value["ToDo"]["All Items"].find = substitute_mongo_api_mock
     response = client.get('/items/get_all_cards')
     assert response.status_code == 200 
