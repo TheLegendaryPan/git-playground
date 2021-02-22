@@ -8,7 +8,7 @@ from threading import Thread
 import app
 from trelloapp import Trello
 from dotenv import load_dotenv
-from Test import board
+# from Test import board
 import json
 
 # Module scope re-uses the fixture; the webdriver is auto updated by the ChromeDriverManager to avoid outdated version issue
@@ -27,8 +27,8 @@ def driver():
 def test_app():
     # new board created by calling trello from init file under Test
     #board_id = Trello().create_test_board("Tasks_Selenium")
-    new_board = json.loads(board)
-    board_id = new_board["id"]
+    # new_board = json.loads(board) - Removed Feb 22 post Mongo
+    # board_id = new_board["id"] - Removed Feb 22 post Mongo
     # construct the new application
     application = app.create_app()
     # start the app in its own thread.
@@ -38,7 +38,7 @@ def test_app():
     yield app
     # Tear Down
     thread.join(1)
-    Trello().delete_test_board(board_id)
+    # Trello().delete_test_board(board_id) - Removed Feb 22 post Mongo
 
 def test_task_journey(driver, test_app):
     driver.get('http://localhost:5000/')
