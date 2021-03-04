@@ -46,7 +46,7 @@ def test_index_page_with_mock(mock_mongo_card, client):
     response = client.get('/items/get_all_cards')
     assert response.status_code == 200 
 
-
+# requires additional mongo connection string under get all cards
 @patch('pymongo.MongoClient')
 def test_index_page_with_mock2(mock_mongo_card, client):
     mock_mongo_card.return_value["ToDo"]["All Items"].find = substitute_mongo_api_mock
