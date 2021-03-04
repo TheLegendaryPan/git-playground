@@ -47,15 +47,8 @@ def test_index_page_with_mock(mock_mongo_card, client):
     assert response.status_code == 200 
 
 
-# Cant get below to work!! Get AssertionError assert <MagicMcok.... == {'_id':'1234...} HELP
-#@patch('pymongo.MongoClient')
-#def test_index_page_with_mock2(mock_mongo_card, client):
-#   mock_mongo_card.return_value["ToDo"]["All Items"].find = substitute_mongo_api_mock  # returns a cursor
-#   data = [TodoItem.from_mongo_card(card) for card in mock_mongo_card]    
-#   assert mock_mongo_card.return_value[0] == {'_id': '123456', 'title': 'Test to do item', 'update_time': '2020-08-01T12:52:06.278Z'}
-#   assert data[1]['title'] == "Test to do item"
-#   assert "Test to do item" in data
-#   assert "12345" in mock_mongo_card
-#   assert "2020-08-01T12:52:06.278Z" in mock_mongo_card
-#   assert data2[0] == {'_id': '12345', 'title': 'Test to do item', 'update_time': '2020-08-01T12:52:06.278Z'}
-#   assert mock_mongo_card[0]['title'] == "Test to do item"
+@patch('pymongo.MongoClient')
+def test_index_page_with_mock2(mock_mongo_card, client):
+    mock_mongo_card.return_value["ToDo"]["All Items"].find = substitute_mongo_api_mock
+    response = client.get('/items/get_all_cards')
+    assert "Test to do item" in response.data.decode()
