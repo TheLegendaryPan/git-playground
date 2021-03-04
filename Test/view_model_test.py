@@ -1,12 +1,17 @@
-from trello_class import TrelloItem
+# from trello_class import TrelloItem
+from todo_item import TodoItem
 from view_model import ViewModel
 import pytest
 from datetime import datetime, timedelta, date
+from dotenv import load_dotenv  #to invoke .env file
+import os
+
+load_dotenv()
 
 def test_filters_by_status(): # first test to see if view model item matches each status
-    created_todo = TrelloItem(1, "Test in progress Todo", "To Do", datetime.now())
-    pending_todo = TrelloItem(2, "Test Pending Todo", "Pending", datetime.now())
-    done_todo = TrelloItem(3, "Test Done Todo", "Done", datetime.now())
+    created_todo = TodoItem(1, "Test in progress Todo", "To Do", datetime.now())
+    pending_todo = TodoItem(2, "Test Pending Todo", "Pending", datetime.now())
+    done_todo = TodoItem(3, "Test Done Todo", "Done", datetime.now())
 
     todos = [
         created_todo,
@@ -22,17 +27,17 @@ def test_filters_by_status(): # first test to see if view model item matches eac
 
 @pytest.fixture # first way of setting the fixture
 def item_view():
-    created_todo = TrelloItem(1, "Test in progress Todo", "To Do", date.today())
-    created_todo2 = TrelloItem(2, "Test in progress Todo", "To Do", date.today())
-    created_todo3 = TrelloItem(3, "Test in progress Todo", "To Do", date.today())
-    pending_todo = TrelloItem(4, "Test Pending Todo", "Pending", date.today())
-    pending_todo2 = TrelloItem(5, "Test Pending Todo", "Pending", date.today())
-    done_todo = TrelloItem(6, "You're not done", "Done", date.today() - timedelta(days = 2))
-    done_todo2 = TrelloItem(7, "Are you sure you're done", "Done", date.today() - timedelta(days = 3))
-    done_todo3 = TrelloItem(8, "Are you sure you're done1", "Done", date.today() - timedelta(days = 4))
-    done_todo4 = TrelloItem(9, "Are you sure you're done2", "Done", date.today() - timedelta(days = 5))
-    done_todo5 = TrelloItem(10, "Are you sure you're done3", "Done", date.today())
-    done_todo6 = TrelloItem(11, "Are you sure you're done4", "Done", date.today())
+    created_todo = TodoItem(1, "Test in progress Todo", "To Do", date.today())
+    created_todo2 = TodoItem(2, "Test in progress Todo", "To Do", date.today())
+    created_todo3 = TodoItem(3, "Test in progress Todo", "To Do", date.today())
+    pending_todo = TodoItem(4, "Test Pending Todo", "Pending", date.today())
+    pending_todo2 = TodoItem(5, "Test Pending Todo", "Pending", date.today())
+    done_todo = TodoItem(6, "You're not done", "Done", date.today() - timedelta(days = 2))
+    done_todo2 = TodoItem(7, "Are you sure you're done", "Done", date.today() - timedelta(days = 3))
+    done_todo3 = TodoItem(8, "Are you sure you're done1", "Done", date.today() - timedelta(days = 4))
+    done_todo4 = TodoItem(9, "Are you sure you're done2", "Done", date.today() - timedelta(days = 5))
+    done_todo5 = TodoItem(10, "Are you sure you're done3", "Done", date.today())
+    done_todo6 = TodoItem(11, "Are you sure you're done4", "Done", date.today())
 
     todos = [
         created_todo,
@@ -53,9 +58,9 @@ def item_view():
 @pytest.fixture # 2nd way of setting the fixture
 def items_view2():
     return ViewModel([
-    TrelloItem(1, "Test in progress Todo", "To Do", datetime.now()),
-    TrelloItem(2, "Test Pending Todo", "Pending", datetime.now()),
-    TrelloItem(3, "Test Done Todo", "Done", datetime.now())
+    TodoItem(1, "Test in progress Todo", "To Do", datetime.now()),
+    TodoItem(2, "Test Pending Todo", "Pending", datetime.now()),
+    TodoItem(3, "Test Done Todo", "Done", datetime.now())
     ])
 
 # using 1st method to get all cards 

@@ -31,12 +31,12 @@
   <div class="row">
     <div class="col-md-12">
       <a href="{{url_for('create_item_page')}}"> Click here to add new card to ToDo </a>
-      <h2>To Do Items from Trello:</h2>
+      <h2>To Do Items from Mongo:</h2>
         {% for todo in todos.to_do_items %}
           <form action="{{url_for('Items_Done')}}" method="POST">
             <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
             <input type = 'text' name="status" value="{{todo.status}}" readonly="readonly">
-            <input type = 'hidden' name="card_id" value="{{todo.id}}" readonly="readonly">
+            <input type = 'text' name="card_id" value="{{todo.id}}" readonly="readonly">
             <input type = 'text' name="update_time" value="{{todo.update_time}}" readonly="readonly">
             <input type = "submit" style="font-size:12pt;color:white;background-color:rgb(99, 179, 33);border:2px solid #000000" name = 'action' value="Mark as Done"> 
             <input type = "submit" style="font-size:12pt;color:white;background-color:rgb(255, 49, 49);border:2px solid #000000" name = 'action' value="Delete"> 
@@ -45,7 +45,7 @@
       </div>
       <p>&nbsp;</p>
       <div class="col-md-12">
-        <h2>Pending Items from Trello:</h2>
+        <h2>Pending Items from Mongo:</h2>
           {% for todo in todos.doing_items %}
             <form action="{{url_for('Items_Done')}}" method="POST">
                <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">
@@ -79,7 +79,7 @@
       <button onclick="ShowHideDone()">Show/Hide All Done Itmes</button> <button onclick="ShowHideDoneToday()">Show/Hide All Done Itmes Today</button>
 
       <div class="col-md-12" id="HideStuff" style = "visibility: hidden">
-         <h2>All Completed Items from Trello:</h2>
+         <h2>All Completed Items from Mongo:</h2>
            {% for todo in todos.done_items %}
             <form action="{{url_for('Items_To_Do')}}" method="POST">
               <input type ='text' name='card_name' value="{{todo.title}}" readonly="readonly">

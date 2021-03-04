@@ -1,13 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
-from trelloapp import Trello
+# from trelloapp import Trello
 import json
-from trello_class import TrelloItem
+from todo_item import TodoItem #replaced Trello
 from view_model import ViewModel
+import pymongo
+from bson import ObjectId, json_util
+from datetime import datetime
+from dotenv import load_dotenv  #to invoke .env file
+import os
 
 def create_app():
     app = Flask(__name__)
-#    app.config.from_object('flask_config.Config')  #can remove to delete secret key config
+    # app.config.from_object('flask_config.Config')  #removed secret key config
+
+    load_dotenv()
+    MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
+    MONGO_PASS = os.getenv("MONGO_PASS")  # take .env from dotenv
+
+    myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
+    mydb = myclient["ToDo"]
+    mycollection = mydb["All Items"]
 
     @app.route('/') 
     def root():
@@ -16,9 +29,13 @@ def create_app():
     @app.route('/items/get_all_cards', methods = ["GET"])
     def getAll(): 
 
-        todo_resp = Trello().get_all_cards_from_board()
-        todo_dict = json.loads(todo_resp)
-        todo_list = [ TrelloItem.from_trello_card(card) for card in todo_dict ]
+        myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
+        mydb = myclient["ToDo"]
+        mycollection = mydb["All Items"]
+
+        todo_resp = mycollection.find() # find method returns a cursor instance for iteration
+    
+        todo_list = [TodoItem.from_mongo_card(card) for card in todo_resp] ## returns list of dict
 
         return render_template('all_items.html', todos = ViewModel(todo_list))
 
@@ -28,10 +45,14 @@ def create_app():
             if request.form['action'] == 'Mark as Done':
                 card_name = request.form['card_name']
                 card_id = request.form['card_id']
-                Trello().move_card_to_done(card_id)
+                myquery = {"_id": ObjectId(card_id)}
+                newvalue = {"$set": {"status": "Done"}}
+                mycollection.update_one(myquery, newvalue)
             elif request.form['action'] == 'Delete':
                 card_id = request.form['card_id']
-                Trello().delete_card(card_id)
+                myquery = {"_id": ObjectId(card_id)}
+                mycollection.delete_one(myquery)
+
         return redirect("/")
 
     @app.route('/Items_To_Do', methods = ['POST', 'GET'])
@@ -39,12 +60,16 @@ def create_app():
         if request.method == 'POST':
             if request.form['action'] == 'Mark as To Do':
                 card_name = request.form['card_name']
-                card_id = request.form['card_id']   
-                Trello().move_card_to_do(card_id)
+                card_id = request.form['card_id']
+                myquery = {"_id": ObjectId(card_id)}
+                newvalue = {"$set": {"status": "To Do"}}
+                mycollection.update_one(myquery, newvalue)
             elif request.form['action'] == 'Delete':
                 card_id = request.form['card_id']
-                Trello().delete_card(card_id)
+                myquery = {"_id": ObjectId(card_id)}
+                mycollection.delete_one(myquery)
         return redirect("/")
+
 
     @app.route('/items/create_item_page', methods = ['POST', 'GET'])
     def create_item_page():
@@ -54,7 +79,7 @@ def create_app():
     def Items_To_Add():
         if request.method == 'POST':
             card_name=request.form['card_name']
-            Trello().create_new_card(card_name)
+            mycollection.insert_one({"title":card_name, "status":"To Do", "update_time": datetime.now()})
         return redirect("/")
      
 
