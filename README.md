@@ -50,4 +50,11 @@ Renaming above link to https://trello.com/b/83tSYoun/fengs-to-do.json to display
 Alternatively you can extract board, list and card id details using Postman. 
 
 ```
+## MONGODB Credentials and Removal of Trello Post Module 9:
+Please note Trello has been been replaced by MongoDB instance and login credential are encrypted via Travis CI. 
+Locally this is also defined under .env files when passed in as a variable $MONGO_LOGIN
+
+
+
+```
 
