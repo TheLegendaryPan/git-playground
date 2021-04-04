@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, Response
+from flask import Flask, render_template, request, redirect, session, url_for, Response
 import os
 # from trelloapp import Trello
 import json
 from flask_login.utils import login_required, login_user, logout_user
+from flask_login import UserMixin
 from todo_item import TodoItem #replaced Trello
 from view_model import ViewModel
 import pymongo
@@ -13,11 +14,14 @@ import os
 from login_manager import create_login_manager 
 from oauthlib.oauth2 import WebApplicationClient
 import requests
+from requests_oauthlib import OAuth2Session
+from flask.json import jsonify
+from user import User
 
 
 def create_app():
     app = Flask(__name__)
-    # app.config.from_object('flask_config.Config')  #removed secret key config
+    app.config.from_object('flask_config.Config')  #added secret key back for module 10
 
     load_dotenv()
     MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
@@ -46,13 +50,23 @@ def create_app():
         url,headers,body = client.prepare_token_request('https://github.com/login/oauth/access_token', client_secret = os.getenv("GIT_CLIENT_SECRET"), code=code)
         # parse the JSON response body post token validation, receives an access token or key        
         token_response = requests.post(url, headers=headers, data=body, auth=(os.getenv("GIT_CLIENT_ID"), os.getenv("GIT_CLIENT_SECRET")))
-        userinfo_response = requests.get(url, headers=headers, data=body)
-        print(userinfo_response)
-        #client.parse_request_body_response(json.dumps(token_response.json()))
-        # THIS DOES NOT work :(
-        client.parse_request_body_response(token_response.text)
-        #userinfo_response = requests.get(url, headers=headers, data=body)
+        # parse the token from the response
+        token = client.parse_request_body_response(token_response.text)
+        # save the token
+        session['oauth_token'] = token
+        # get user id details by passing above git token
+        github = OAuth2Session(os.getenv("GIT_CLIENT_ID"), token=session['oauth_token'])
+        # can see my details in response 200
+        userinfo_response = jsonify(github.get('https://api.github.com/user').json())
+        # prints out logged in user, TheLegendaryPan in this case!
+        user_id = userinfo_response.json['login']
+        print(userinfo_response.json['login'])
+
+        user= User(user_id)
+        login_user(user)
+
         return redirect(url_for('getAll'))
+
 
     @app.route("/logout")
     @login_required
@@ -61,6 +75,7 @@ def create_app():
         return Response('<p>Logged out</p>')
 
     @app.route('/items/get_all_cards', methods = ["GET"])
+    @login_required
     def getAll(): 
 
         myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
@@ -73,6 +88,7 @@ def create_app():
 
         return render_template('all_items.html', todos = ViewModel(todo_list))
 
+    @login_required
     @app.route('/Items_Done', methods = ['POST', 'GET'])
     def Items_Done():
         if request.method == 'POST':
@@ -89,6 +105,7 @@ def create_app():
 
         return redirect("/")
 
+    @login_required
     @app.route('/Items_To_Do', methods = ['POST', 'GET'])
     def Items_To_Do():
         if request.method == 'POST':
@@ -104,11 +121,12 @@ def create_app():
                 mycollection.delete_one(myquery)
         return redirect("/")
 
-
+    @login_required
     @app.route('/items/create_item_page', methods = ['POST', 'GET'])
     def create_item_page():
         return render_template('CreateCard.html')
 
+    @login_required
     @app.route('/items/Items_To_Add', methods = ['POST', 'GET'])
     def Items_To_Add():
         if request.method == 'POST':

@@ -22,6 +22,7 @@ def driver():
 
 @pytest.fixture(scope='module')
 def test_app():
+    os.environ['LOGIN_DISABLED']=True ##added this to pick up LOGIN_DISABLED flag from flask_config to turn off authenticatin for testing DOESNT WORK
     # construct the new application
     application = app.create_app()
     # start the app in its own thread.

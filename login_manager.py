@@ -5,6 +5,7 @@ import pymongo
 import requests
 from dotenv import load_dotenv
 from werkzeug.utils import redirect  #to invoke .env file
+from user import User
 
 load_dotenv()
 GIT_CLIENT_ID = os.getenv("GIT_CLIENT_ID")  # take .env from dotenv
@@ -25,11 +26,11 @@ def create_login_manager():
         uri = client.prepare_request_uri('https://github.com/login/oauth/authorize')
         return redirect(uri)
 
-        pass # Add logic to redirect to the Github OAuth flow when unauthenticated
+        pass 
 
     @login_manager.user_loader
     def load_user(user_id):
         #return None
-        return None
+        return User(user_id)
 
     return login_manager
