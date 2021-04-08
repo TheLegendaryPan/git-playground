@@ -5,6 +5,7 @@ import pytest
 from datetime import datetime, timedelta, date
 from dotenv import load_dotenv  #to invoke .env file
 import os
+from user import User, Role
 
 load_dotenv()
 
@@ -19,7 +20,10 @@ def test_filters_by_status(): # first test to see if view model item matches eac
         done_todo
     ]
 
-    view_model = ViewModel(todos)
+    # added as part of module 10 project
+    reader = "ReadOnly"
+
+    view_model = ViewModel(todos, reader)
     
     assert view_model.to_do_items == [created_todo]
     assert view_model.doing_items == [pending_todo]
@@ -27,6 +31,8 @@ def test_filters_by_status(): # first test to see if view model item matches eac
 
 @pytest.fixture # first way of setting the fixture
 def item_view():
+    reader = "ReadOnly"
+
     created_todo = TodoItem(1, "Test in progress Todo", "To Do", date.today())
     created_todo2 = TodoItem(2, "Test in progress Todo", "To Do", date.today())
     created_todo3 = TodoItem(3, "Test in progress Todo", "To Do", date.today())
@@ -53,15 +59,17 @@ def item_view():
         done_todo6
     ]
 
-    return ViewModel(todos)
+    return ViewModel(todos, reader)
     
 @pytest.fixture # 2nd way of setting the fixture
 def items_view2():
+    reader = "ReadOnly" # added as part of module 10
+    os.environ['LOGIN_DISABLED']='True' 
     return ViewModel([
     TodoItem(1, "Test in progress Todo", "To Do", datetime.now()),
     TodoItem(2, "Test Pending Todo", "Pending", datetime.now()),
     TodoItem(3, "Test Done Todo", "Done", datetime.now())
-    ])
+    ], reader) # added as part of module 10 
 
 # using 1st method to get all cards 
 def test_return_all_items(item_view): 

@@ -14,7 +14,7 @@ import json
 @pytest.fixture(scope='module')
 def driver():
     opts = webdriver.ChromeOptions()
-    opts.add_argument('--headless')
+  # opts.add_argument('--headless')
     opts.add_argument('--no-sandbox')
     opts.add_argument('--disable-dev-shm-usage')
     with webdriver.Chrome(ChromeDriverManager().install(), options=opts) as driver:
@@ -22,7 +22,8 @@ def driver():
 
 @pytest.fixture(scope='module')
 def test_app():
-    os.environ['LOGIN_DISABLED']=True ##added this to pick up LOGIN_DISABLED flag from flask_config to turn off authenticatin for testing DOESNT WORK
+    os.environ['LOGIN_DISABLED']='True' ##added this to pick up LOGIN_DISABLED flag from flask_config to turn off authenticatin for testing
+    os.environ['ANON_USER'] = 'TheLegendaryPan'## added as part of module 10
     # construct the new application
     application = app.create_app()
     # start the app in its own thread.

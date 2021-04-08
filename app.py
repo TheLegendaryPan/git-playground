@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session, url_for, R
 import os
 # from trelloapp import Trello
 import json
-from flask_login.utils import login_required, login_user, logout_user
+from flask_login.utils import login_required, login_user, logout_user, current_user
 from flask_login import UserMixin
 from todo_item import TodoItem #replaced Trello
 from view_model import ViewModel
@@ -16,7 +16,7 @@ from oauthlib.oauth2 import WebApplicationClient
 import requests
 from requests_oauthlib import OAuth2Session
 from flask.json import jsonify
-from user import User
+from user import User, Role
 
 
 def create_app():
@@ -86,7 +86,11 @@ def create_app():
     
         todo_list = [TodoItem.from_mongo_card(card) for card in todo_resp] ## returns list of dict
 
-        return render_template('all_items.html', todos = ViewModel(todo_list))
+        # user authorization
+        user_authorizaion = User(current_user.get_id())
+        reader = user_authorizaion.get_role() == Role.Reader
+
+        return render_template('all_items.html', todos = ViewModel(todo_list, reader))
 
     @login_required
     @app.route('/Items_Done', methods = ['POST', 'GET'])

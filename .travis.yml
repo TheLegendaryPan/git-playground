@@ -10,14 +10,12 @@ script:
 - docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/view_model_test.py
 
 # Docker Run to Execute Unit Integration Package - failed
-#- echo "Running Integration Tests"
-#- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/client_test.py
+- echo "Running Integration Tests"
+- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/client_test.py
 
 # Docker Run to Execute Unit E2E Selenium Package
-# - echo "Running E2E Tests"
-# comment out selenium test for module 10 for now due to failure
-#
-# - docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/selenium_test.py
+#- echo "Running E2E Tests"
+#- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/selenium_test.py
 - echo "All Tests Have Been Completed"
 
 # DockerHubLogin

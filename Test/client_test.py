@@ -17,6 +17,7 @@ def client():
     file_path = find_dotenv('.env.test') 
     load_dotenv(file_path, override=True) 
     # Create the new app.
+    os.environ['LOGIN_DISABLED']='True' # added as part of module 10 to remove login check
     test_app = app.create_app()
     # Use the app to create a test_client that can be used in our tests.
     with test_app.test_client() as client:

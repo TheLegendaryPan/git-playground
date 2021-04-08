@@ -16,17 +16,14 @@ def create_login_manager():
     # flask_login
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
-
+    
+    #login_manager.anonymous_user = User(os.getenv('ANON_USER', 'ANON'))
 
     @login_manager.unauthorized_handler
     def unauthenticated():
-        print("blah")
-
         client = WebApplicationClient(client_id=os.getenv("GIT_CLIENT_ID"))
         uri = client.prepare_request_uri('https://github.com/login/oauth/authorize')
         return redirect(uri)
-
-        pass 
 
     @login_manager.user_loader
     def load_user(user_id):
