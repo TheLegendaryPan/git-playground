@@ -12,6 +12,7 @@ from datetime import datetime
 from dotenv import load_dotenv  #to invoke .env file
 import os
 from login_manager import create_login_manager 
+import login_manager
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 from requests_oauthlib import OAuth2Session
@@ -22,6 +23,9 @@ from user import User, Role
 def create_app():
     app = Flask(__name__)
     app.config.from_object('flask_config.Config')  #added secret key back for module 10
+    # added as part of module 10
+    #login_disabled = os.getenv('LOGIN_DISABLED') == 'True'
+    #app.config['LOGIN_DISABLED'] = login_disabled
 
     load_dotenv()
     MONGO_LOGIN = os.getenv("MONGO_LOGIN")  # take .env from dotenv
@@ -35,6 +39,7 @@ def create_app():
 
     login_manager = create_login_manager()
     login_manager.init_app(app)
+    
 
     @app.route('/') 
     @login_required
@@ -64,7 +69,7 @@ def create_app():
 
         user= User(user_id)
         login_user(user)
-
+        
         return redirect(url_for('getAll'))
 
 

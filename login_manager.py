@@ -17,8 +17,6 @@ def create_login_manager():
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     
-    #login_manager.anonymous_user = User(os.getenv('ANON_USER', 'ANON'))
-
     @login_manager.unauthorized_handler
     def unauthenticated():
         client = WebApplicationClient(client_id=os.getenv("GIT_CLIENT_ID"))

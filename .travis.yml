@@ -14,8 +14,8 @@ script:
 - docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/client_test.py
 
 # Docker Run to Execute Unit E2E Selenium Package
-#- echo "Running E2E Tests"
-#- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/selenium_test.py
+- echo "Running E2E Tests"
+- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS -e ANON_USER -e ANON todo-app:test Test/selenium_test.py
 - echo "All Tests Have Been Completed"
 
 # DockerHubLogin
@@ -46,8 +46,8 @@ deploy:
   on:
   #  all_branches: true
   #  branch: module_8
-     branch: master # (revert back to this after merging module_9)
-  #  branch: module_9
+  #  branch: master # (revert back to this after merging module_9)
+     branch: module_10
 
 env:
   global:
@@ -56,6 +56,8 @@ env:
     - list_id_ToDo=5ef1186d26a8d939ea575069
     - list_id_Pending=5ef1186d2fd57d026f03add0
     - list_id_Done=5ef1186dcbda554f16c6d66f
+    - ANON_USER=TheLegendaryPan
+    - ANON=TheLegendaryPanTester
 
 # heroku_login heroku_pass heroku_api
 # Trello API    
