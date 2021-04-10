@@ -37,6 +37,7 @@ def test_app():
     login_manager = create_login_manager()
     login_manager.init_app(application)
     login_manager.anonymous_user = User
+    application.config.from_object('flask_config.Config')  #added secret key back for module 10
     # start the app in its own thread.
     thread = Thread(target=lambda: application.run(use_reloader=False))
     thread.daemon = True
