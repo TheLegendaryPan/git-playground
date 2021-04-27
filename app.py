@@ -33,7 +33,10 @@ def create_app():
     GIT_CLIENT_ID = os.getenv("GIT_CLIENT_ID")  # take .env from dotenv
     GIT_CLIENT_SECRET = os.getenv("GIT_CLIENT_SECRET")  # take .env from dotenv
 
-    myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
+    #module 11 pointing to cosmos db
+    #myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
+    myclient = pymongo.MongoClient('mongodb://%s:%s@module11-cosmos-serverless.mongo.cosmos.azure.com:10255/DefaultDatabase?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@module11-cosmos-serverless@' % (MONGO_LOGIN, MONGO_PASS))
+    print(myclient)
     mydb = myclient["ToDo"]
     mycollection = mydb["All Items"]
 
@@ -83,7 +86,12 @@ def create_app():
     @login_required
     def getAll(): 
 
-        myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
+        #myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
+        #mydb = myclient["ToDo"]
+        #mycollection = mydb["All Items"]
+        print(MONGO_LOGIN)
+        print(MONGO_PASS)
+        myclient = pymongo.MongoClient('mongodb://%s:%s@module11-cosmos-serverless.mongo.cosmos.azure.com:10255/DefaultDatabase?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@module11-cosmos-serverless@' % (MONGO_LOGIN, MONGO_PASS))
         mydb = myclient["ToDo"]
         mycollection = mydb["All Items"]
 
