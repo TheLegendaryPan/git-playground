@@ -44,7 +44,7 @@ deploy:
   # script: heroku container:release web --app fengs-todo-app
   script: 
     #curl -dH -X POST "https://\$fengwebapp:SaELzMgX5YlJkpPfHHh1MlsS1QWL3Q2eAibgldjtE9KLLBdRtYsSl961EdaL@fengwebapp.scm.azurewebsites.net/docker/hook"
-    curl -dH -X POST "AZURE_HOOK"
+    curl -dH -X POST "https://$fengwebapp:SaELzMgX5YlJkpPfHHh1MlsS1QWL3Q2eAibgldjtE9KLLBdRtYsSl961EdaL@fengwebapp.scm.azurewebsites.net/docker/hook"
   on:
   #  all_branches: true
   #  branch: module_8
