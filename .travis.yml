@@ -50,6 +50,7 @@ deploy:
   #  branch: module_8
   #  branch: master # (revert back to this after merging module_9)
      branch: module_11
+  verboe: true
 
 env:
   global:
