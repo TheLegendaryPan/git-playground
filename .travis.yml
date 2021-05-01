@@ -26,8 +26,8 @@ script:
 - docker tag todo-app:prod legendarypan/todo-app:prod
 - docker push legendarypan/todo-app:prod
 
-# Pre-deploy Install
-- curl -sS https://cli-assets.heroku.com/install.sh | sh
+# Pre-deploy Install - removed post module 11
+# - curl -sS https://cli-assets.heroku.com/install.sh | sh
 # - heroku update
 # - heroku plugins:install @heroku-cli/plugin-container-registry
 
@@ -43,7 +43,7 @@ deploy:
   # removed below heroku post module 11
   # script: heroku container:release web --app fengs-todo-app
   script: 
-    curl -dH -X POST "AZURE_WEBHOOK"
+    curl -dH -X POST "https://\$fengwebapp:SaELzMgX5YlJkpPfHHh1MlsS1QWL3Q2eAibgldjtE9KLLBdRtYsSl961EdaL@fengwebapp.scm.azurewebsites.net/docker/hook"
   on:
   #  all_branches: true
   #  branch: module_8
