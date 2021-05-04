@@ -18,6 +18,7 @@ import requests
 from requests_oauthlib import OAuth2Session
 from flask.json import jsonify
 from user import User, Role
+from access import accesscheck
 
 
 def create_app():
@@ -65,7 +66,6 @@ def create_app():
         userinfo_response = jsonify(github.get('https://api.github.com/user').json())
         # prints out logged in user, TheLegendaryPan in this case!
         user_id = userinfo_response.json['login']
-        print(userinfo_response.json['login'])
 
         user= User(user_id)
         login_user(user)
@@ -97,8 +97,9 @@ def create_app():
 
         return render_template('all_items.html', todos = ViewModel(todo_list, reader))
 
-    @login_required
     @app.route('/Items_Done', methods = ['POST', 'GET'])
+    @login_required
+    @accesscheck
     def Items_Done():
         if request.method == 'POST':
             if request.form['action'] == 'Mark as Done':
@@ -114,8 +115,9 @@ def create_app():
 
         return redirect("/")
 
-    @login_required
     @app.route('/Items_To_Do', methods = ['POST', 'GET'])
+    @login_required
+    @accesscheck
     def Items_To_Do():
         if request.method == 'POST':
             if request.form['action'] == 'Mark as To Do':
@@ -130,13 +132,15 @@ def create_app():
                 mycollection.delete_one(myquery)
         return redirect("/")
 
-    @login_required
     @app.route('/items/create_item_page', methods = ['POST', 'GET'])
+    @login_required
+    @accesscheck
     def create_item_page():
         return render_template('CreateCard.html')
 
-    @login_required
     @app.route('/items/Items_To_Add', methods = ['POST', 'GET'])
+    @login_required
+    @accesscheck
     def Items_To_Add():
         if request.method == 'POST':
             card_name=request.form['card_name']
