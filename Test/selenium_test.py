@@ -30,7 +30,7 @@ def test_app():
     # when flask isnt running, selenium test runs as readonly. but when session is running it asks to authenticate?
     ##added this to pick up LOGIN_DISABLED flag from flask_config to turn off authenticatin for testing
     os.environ['LOGIN_DISABLED'] = 'True'
-    #os.environ['ANON_USER'] = 'TheLegendaryPan'## added as part of module 10
+    os.environ['ANON_USER'] = 'TheLegendaryPan'## added as part of module 10
     # construct the new application
     application = app.create_app()
     # added login manager to use anonymouse user as part of module 10
