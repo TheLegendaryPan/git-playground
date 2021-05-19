@@ -89,8 +89,6 @@ def create_app():
         #myclient = pymongo.MongoClient('mongodb+srv://%s:%s@cluster0.pc757.mongodb.net/ToDo?retryWrites=true&w=majority' % (MONGO_LOGIN, MONGO_PASS))    
         #mydb = myclient["ToDo"]
         #mycollection = mydb["All Items"]
-        print(MONGO_LOGIN)
-        print(MONGO_PASS)
         myclient = pymongo.MongoClient('mongodb://%s:%s@module11-cosmos-serverless.mongo.cosmos.azure.com:10255/DefaultDatabase?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@module11-cosmos-serverless@' % (MONGO_LOGIN, MONGO_PASS))
         mydb = myclient["ToDo"]
         mycollection = mydb["All Items"]

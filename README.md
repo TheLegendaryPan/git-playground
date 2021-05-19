@@ -54,7 +54,6 @@ Alternatively you can extract board, list and card id details using Postman.
 Please note Trello has been been replaced by MongoDB instance and login credential are encrypted via Travis CI. 
 Locally this is also defined under .env files when passed in as a variable $MONGO_LOGIN
 
-
-
 ```
-
+## Migration to Azure Cloud:
+The App as of Module 11 have been migrated over to Azure Cloud. This includes moving resources such as DB from MongoDB to cosmos DB on Azure. 

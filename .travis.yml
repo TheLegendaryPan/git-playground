@@ -18,19 +18,11 @@ script:
 - docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS -e ANON_USER -e ANON -e SECRET_KEY todo-app:test Test/selenium_test.py
 - echo "All Tests Have Been Completed"
 
-# DockerHubLogin
+before_deploy:
 - docker login --username "$docker_login" --password "$docker_pass"
-
-# Docker Build the Prod and DockerPush
 - docker build --target production --tag todo-app:prod .
 - docker tag todo-app:prod legendarypan/todo-app:prod
 - docker push legendarypan/todo-app:prod
-
-# Pre-deploy Install - removed post module 11
-# - curl -sS https://cli-assets.heroku.com/install.sh | sh
-# - heroku update
-# - heroku plugins:install @heroku-cli/plugin-container-registry
-
 
 # using heroku credentials - commented out post module 11, migrated app from Heroku to Azure cloud
 # NOTES use auth token instead of API key and move to environment variable like docker_login 
@@ -49,9 +41,9 @@ deploy:
   on:
   #  all_branches: true
   #  branch: module_8
-  #  branch: master # (revert back to this after merging module_9)
-     branch: module_11
-  verboe: true
+     branch: master # (revert back to this after merging module_11)
+  #  branch: module_11
+  verbose: true
 
 env:
   global:
