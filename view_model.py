@@ -10,8 +10,10 @@ class ViewModel:
     print("curr date:", current_date)
     print("utc date:", current_date1)
 
-    def __init__(self, items):
+    # added reader to viewmodel 
+    def __init__(self, items, reader):
         self._items = items
+        self._reader = reader
 
     @property
     def items(self):
@@ -57,3 +59,7 @@ class ViewModel:
             return self.show_recent_done
         elif len(self.done_items) <= 5: 
             return self.done_items[0:5]
+
+    @property
+    def reader(self):
+        return self._reader

@@ -55,6 +55,8 @@ Please note Trello has been been replaced by MongoDB instance and login credenti
 Locally this is also defined under .env files when passed in as a variable $MONGO_LOGIN
 
 
-
+## Please note that following Module 10 github authenticiation and authorization is added for all routes for the app. 
+Ensure to setup your Github OAuth App via github developer settings. All git IDs by default will retain ReadOnly access
+to the app. 
 ```
 
