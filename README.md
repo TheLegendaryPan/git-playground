@@ -54,6 +54,10 @@ Alternatively you can extract board, list and card id details using Postman.
 Please note Trello has been been replaced by MongoDB instance and login credential are encrypted via Travis CI. 
 Locally this is also defined under .env files when passed in as a variable $MONGO_LOGIN
 
+## Please note that following Module 10 github authenticiation and authorization is added for all routes for the app. 
+Ensure to setup your Github OAuth App via github developer settings. All git IDs by default will retain ReadOnly access
+to the app. 
+
 ```
 ## Migration to Azure Cloud:
 The App as of Module 11 have been migrated over to Azure Cloud. This includes moving resources such as DB from MongoDB to cosmos DB on Azure. 
