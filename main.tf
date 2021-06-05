@@ -19,7 +19,8 @@ data "azurerm_resource_group" "main" {
 
 # create app plan 
 resource "azurerm_app_service_plan" "main" {
- name = "terraformed-asp"
+# name = "terraformed-asp"
+ name = "${var.prefix}-asp"
  location = data.azurerm_resource_group.main.location
  resource_group_name = data.azurerm_resource_group.main.name
  kind = "Linux"
