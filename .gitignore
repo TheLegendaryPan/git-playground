@@ -127,4 +127,6 @@ env/
 *.tfstate.*
 
 # Exclude all .tfvar files which contains senstitve data
-*.tfvars
+*.tfvars*
+*tfvars*
+terraform.tfvars
