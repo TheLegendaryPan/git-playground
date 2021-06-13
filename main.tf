@@ -53,6 +53,8 @@ resource "azurerm_app_service" "main" {
  "FLASK_ENV" = var.flask_env
  "GIT_CLIENT_ID" = var.client_id
  "GIT_CLIENT_SECRET" = var.client_secret
+ "MONGO_LOGIN" = var.MONGO_LOGIN
+ "MONGO_PASS" = var.MONGO_PASS
  }
 }
 

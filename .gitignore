@@ -125,3 +125,6 @@ env/
 ### .tfstate files ###
 *.tfstate
 *.tfstate.*
+
+# Exclude all .tfvar files which contains senstitve data
+*.tfvars

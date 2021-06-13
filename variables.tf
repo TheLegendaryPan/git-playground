@@ -50,3 +50,15 @@ variable "client_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "MONGO_LOGIN" {
+  description = "MONGO LOGIN"
+  type        = string
+  sensitive   = true
+}
+
+variable "MONGO_PASS" {
+  description = "MONGO PASS"
+  type        = string
+  sensitive   = true
+}
