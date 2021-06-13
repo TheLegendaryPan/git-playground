@@ -1,4 +1,0 @@
-client_id="a0368b7d1b8ca3706e04"
-client_secret="462ac8889f52c732514546634b718ae186c8229d"
-MONGO_LOGIN="module11-cosmos-serverless-terraform"
-MONGO_PASS="Cz73djsVWUvuulGi6J0AOIQhrXm1xMfoyAMAPKCCimJjDW5xsFxc55Kr4Lx8ZO0KKSNyC9eySu93OpnhzlWjSA=="
