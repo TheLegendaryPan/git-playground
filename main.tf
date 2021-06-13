@@ -46,7 +46,13 @@ resource "azurerm_app_service" "main" {
  "DOCKER_REGISTRY_SERVER_URL" = "https://index.docker.io"
  "MONGODB_CONNECTION_STRING" = "mongodb://${azurerm_cosmosdb_account.main.name}:${azurerm_cosmosdb_account.main.primary_key}@${azurerm_cosmosdb_account.main.name}.mongo.cosmos.azure.com:10255/DefaultDatabase?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000"
  "MONGODB_DATABSE_NAME" = "azurerm_cosmosdb_account.main.name"
-
+ "SECRET_KEY" = var.SECRET_KEY
+ "ANON" = var.ANON
+ "ANON_USER" = var.ANON_USER
+ "FLASK_APP" = var.flask_app
+ "FLASK_ENV" = var.flask_env
+ "GIT_CLIENT_ID" = var.client_id
+ "GIT_CLIENT_SECRET" = var.client_secret
  }
 }
 
