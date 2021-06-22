@@ -38,6 +38,17 @@ script:
 # - docker tag legendarypan/todo-app:prod registry.heroku.com/fengs-todo-app/web
 # - docker push registry.heroku.com/fengs-todo-app/web
 
+# added as part of module 12 installation of Terraform CLI
+before_deploy:
+  - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+ # - az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+  - wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip
+  - unzip terraform_"$TF_VERSION"_linux_amd64.zip
+  - sudo mv terraform /usr/local/bin/
+  - rm terraform_"$TF_VERSION"_linux_amd64.zip
+  - terraform init
+  - terraform apply -var "client_id=$client_id" -var "client_secret=$client_secret" -auto-approve
+
 deploy:
   provider: script
   # removed below heroku post module 11
@@ -50,8 +61,8 @@ deploy:
   #  all_branches: true
   #  branch: module_8
   #  branch: master # (revert back to this after merging module_9)
-     branch: module_11
-  verboe: true
+     branch: module_12
+  verbose: true
 
 env:
   global:
@@ -62,6 +73,12 @@ env:
     - list_id_Done=5ef1186dcbda554f16c6d66f
     - ANON_USER=TheLegendaryPan
     - ANON=TheLegendaryPanTester
+    # added as part of module 12
+    # - ARM_CLIENT_ID=27f4532f-cba5-4317-8666-9084d1bea341
+    # - ARM_TENANT_ID=7d6f97d6-d755-4c10-b763-409cc4b6638f
+    # - ARM_SUBSCRIPTION_ID=d33b95c7-af3c-4247-9661-aa96d47fccc0
+    # - ARM_CLIENT_SECRET=r6tBPNQ.Jwb3UspM.0LZrqY99ndiPWumd7
+    - TF_VERSION=0.14.7
 
 # heroku_login heroku_pass heroku_api
 # Trello API    
@@ -86,3 +103,8 @@ env:
 # Azure webhook AZURE_WEBHOOK (active) AZURE_HOOK (decom)
     - secure: 7uu5/D5SdVTQTggCjIS6CSW1RtTYhxgoCaTrj6i5B8u/95OBruum0TfBh6edAaEY8qonok/kYZi2tCoBBhr/kqcsf0JHe4iRQBusw/VBR/V+IeaKwEwckN5JwUX+xHaSi34usbxa8RSQlIwZXlcNPgmL/yb0PQtkc+P339VwSzFdEba+SbVc6Af1KTFzcZtqfXL1EWKv3KxKQkILONge5KtJlTs/FQ7BjIliWvoeTrCH+3vsoCMgMm4hCVVxkSHYmCYHEZ3E9TBR0RA1aQlzGH0Ct0fHaNtJBaCVVPiY7wyavzqLRWu+0McfTIautcM6BDE/tgAm8YynVPAnP223E7LUwbtGHQ1LNYPdntgvKQSrTQlTxrz+rLTWKWBRwnankRHHWs28FpASMkXI9vUWEyNxGh8iM8oYen4L9cVrDv4qW+w0PU9C4hbF6/I9RyDO+DO1Rny0p0WTRZW4ieRrxGzwmLcvuslJavK4r336tLXVSX8njqAQTB8hgndvQGmz+djbYeZQ5esU31Qc/yR84QFXMIrK5aF7nv+9oWfeHUcetfxSrrQPFWrY7aCeZfc9uKBrNc9yzVI4Ia3zjReFvJjoM6ipp62+kHDHOsUrpH4UG5vBUqvFdp2P7QmIrUel2Au2scecbEq50wzMk4ayUVpH+gvke7icBr1RZPRN2pE=
 #- secure: XiDbpHmonbO7zO3JkDThCjlovh/pD2E4+d6kruu4QIVA1hP0zkWuc+deRHKvs3QJFbsfNPEG+Ar30fB+aZpeWfc5zyZewoFCgcKxrk32NMU15dPAD1XyF6M8Wzc2nuv39Q9syLLptoWqwy8vHD4xUzthmwXUTOUa+RFgch7VWKdBzzmB17S9LqXCfg9lsFmEBdo2WSAWadx2oE70ihUovHGTWjbcCFHWgIz6KjLRYggsuYsRZTtZzdLntjPslRxAk1RiikEwzyg/TqrxDtRq+tUp8O/tNSi4L/QmwDsuAID6eIMHMOFPsSL/y/Fk28BUYzLkOQtdHl2etNIZppLbh57K/kUo1TUBY4t1fXSkRZnNioto9l/y+/yO2HRFvG0nHrqZTWqluF/oJl2nF3QNbeQ/KEuBDkWsOj44fO3nSHt3tBhWWJ0BY5F8BCe4TfwszTxitABA7BZnLjXYBs5YMJKNzzjaOvy/rpLuvYVc9uZVUGe0nOa0rqdKF+fsi7OCuZp2cv8qCHlIi+/y8EAVMb/GsVC1jOTdwRgRNagUcTfiX+U3/vJqhFQbKbDd8Rx7F8B2iSW5Tn9R3AL3L6IgTcCTqJ/vXVe6f9gZyd6sqbpaulx+uTFnMKZGnjXSyf5RATgzB+n22SQHprZhjT/2l/tI/D1nND2Bq06r5a/K06I=
+# ARM (Service Principal Authentication) for Azure ARM_CLIENT_ID ARM_TENANT_ID ARM_SUBSCRIPTION_ID ARM_CLIENT_SECRET
+    - secure: NjLU4iBzX7uc4Kpf+u68MZGAR7hts6Le9r66Mp2GEXh9HbFFns6AG+cSSKM8ob5Z3bsC8DSrGRxPBHlfgcYENWHWNWtw5DAoWWO+i8Zo1SaZOOvJqXwYbVuJPh5o/4vuYZATALBsSBb6r+oZIdAbskIKv9kzdyogsYo5O9jV+AG8NQTQwNqQKyL9jBAzmroxLcBYFcoFcDYOWpdMFBvQG1iPiHbbK4CmBi5F/A7g2F37BAi7fpZJ6nKLjyh6OEZgx1ys8zYNqZ1bzFLLCz5qD+Pjo5eBbTzUqDcIGZd1FyNqlyYFGrw6/C6fdODkW3mI8C8LI72y+4WD4vAmph8Sp1HtB6tFvOk9m4h/CCB9hBho2WKe/Vxv2fagiQ/Omr5+rcxccDNIoUMQ4mLD4AlGM+1tobqkhXgqcKVpL0Orlho0K9sRGf6mhkRoXtzwvH55SP2Kh+AtmEKcJkdtAZK+Cm4ReNKPs9OWVZdWt22UoOdc2TAFSFyqC0ndQbpPaPRLqPbZdZaVqxolz1EfjmXM28zEQ8EDLZPl924cPPMynyMMthcfftaz6bNP/BS3A+71USXqtxiEKjfM5Fsk/AAfzQ3QscBZ5tPAWf3qeyX/rNVEY/+ZznGLV+o7qmfEpS8Noy7WRszIbXVGE8VuhZz5rxGbjoQxxkgtXVoIlJQCYKs=
+    - secure: gHfmzIM98idRIMJteVQdq3SDQPNLS8M5vf713p4RrdAYCAbf1974e2y26zTGMUCWttl9EoCq3EmP72oqLvVv0DuUmWNcaTgfZm8P81UfEKskU9zyOUIsa6ufGg8idtwmZ1xtwfSrwtNWciF4GtcsWajtY7O2k6ADMPb0iJQbr2ZoYPJhDA/LIqqvDns4bq0yeQoD/l5/8kcanJksP4FgQWkAOuyvIPcUPgoaPtE3WFw4JGK5oxJWNw9/aH2b0J14t1zXOOJDaZgzC/3u3hRqQdJqDwm1pnyLR7bwODL4BA2e9CMV7TZrjSLkwtRnGlAU49W3K+Gu4Eeaotzyu4KvPzfC6QM4nfNWJK/xVdQOIC8uu77clcJC6ULdyxFedtHirf+nwFvS+DVvHhe7tvGuykfmKEsXl4qmIOQeGbs4dXpFXfFf0RxPwhtNVClcdIAKbaM8a1eODJuID0hfSZ6YkKv+l2+vIMTUmcl+l2CYlSPG9oyjHTyB7JCFuV8nLFh9SeNeg6o/oZZ7cNzQd0pyAVR6OYsdz/0UyD4qiNIq0T+6QHOZ0mNI0FtrnNKaB/9+Rdghn5AEl2qL6Y7cVj8VPWlxrtoddlxDVw7ooMt54Enw0FVvQxoCjH8KBY4Eyf19D41yCYJWxxdZpnvDHoVonMSkpnKqi1Ej+Qba8LFDdJQ=
+    - secure: FmECBkSHuUzSYo3ZppARZjUJES6UPFQWJ+QRg3nGrRRFvlSxfIsZ8jrJBMtr6rxP4OcU1rcBpkhBX2jbJe3S+IhAbVVztwEQUxCmG851RPRxQwTPiP8CuNarYfPyutyYYr094JVDQor+qsEPs/78hHWTJ3QrtV7tlD74qlsIdlMiV9WnoJerZw+wvoFeY2pANhGSrbXw5/K6R0tuvNb7rw5yJEVcMsG96NwhItHBKBBQBiP0xXQqVsbRJVVoB9Q7jxl9qEIj2vx8V3NPSAcBIoXPP29yjEHACr0s910UQELAQSyOm1I8UhrbhPkga7oE2h3EMLUyC2l2GhGkNculraHnDO9Q0klkj+q5acgNQdCFQ3KLqimtpmwIi52VVpUvBadY8yt4bHa5n0CdEAPkLVzxGJ4y82vxBoq0Kss199oY0t/xsZhXsnWiqXmZULrGgDJyQJkn2Ac+d11qRey9aC4YVCANMu2ctaRm2x29yltmN3ayq6dWZV59UUE3hTKr6VRHOTr4PFgc/nDIHMEdKvhrJny92XLJ5MYEDCFytxDOPSMvPIGG8zjVHCjxbjJse5Eh2vOB28lLpGBTrmNpm2ygOW4FjiU6/cyvCvBtyfCf3LZUiw3bKSQJPNjL9W5JQ7gf1e7JFI9JSjuyqIqvykmAcyEetD5VqlkAPjrtSPU=
+    - secure: BttuQjK9v5C8NkD2YMo5qDQTkK30J80eNskuDphYEavFjJfdfDMdL0Dhfk0Pa/EOhFU86+OyehCbk3sP+gr7jBC3j1rH7tan2q/9zRP9PiIA9Gsv5UtD8p+Q+3H+zBoTsmX4EH3Zq1TjBEwaJZPL0KzR3/+2rJSpHS65fURLzNgFMBwY1FHHWstCN8n7m8+tA5x9y+vqfgP0xhnl1G5bIXZDBh9n41oeTYnpjRsJaRKLPljT2p/Hq8W5zxNBAL3Ery13jGzF7fP7XqeCw1zu9FIiqGMLdoikAeQo2LWQyz9KxmSU05DZ5lVB0btENWuux+upOp66TtfwHED39ssTf7p/2OPwz0it4NOCMEqigdSGu0nD7Ss5KwRNqk0ZJl0bkLyM9oLkN/VdKUOWQWYbHgxEOtP5QYQUjwT5uRrHeiLByrVekPjpjsZJFpLQ7Kr9gM1VoQSS6lD7f9Yp7qHIeV+yub2V6I80gDIWZ0k5+bv5/0JHOtg2EBC4L8DpN2BDahmgu1qGA8W9mbuW1xuy5geCmYMgdWZBWySS8ouitXZP4id9WqUGLCz5+pl+cLNF2OPuyuCkSBO2X4GqN7rmtcUyZQIMdklJSlYrLaNtTmuxnC/8K8ju3uYBj42yMvFOvSrUbVm603zc37UxEe0YkSQbAHLP0HumItHawlhu4Qk=

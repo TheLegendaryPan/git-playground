@@ -5,6 +5,15 @@ terraform {
       version = ">= 2.49"
     }
   }
+
+
+# Stores the tfstate as a Blob on the Storage Account
+  backend "azurerm" {
+    resource_group_name  = "CreditSuisse1_FengPan_ProjectExercise"
+    storage_account_name = "tstatefeng"
+    container_name       = "tstatecon"
+    key                  = "terraform.tfstate"
+  }
 }
 
 # provides config detail for terraform provider, mandatory
