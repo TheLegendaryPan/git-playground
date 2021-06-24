@@ -47,7 +47,7 @@ before_deploy:
   - sudo mv terraform /usr/local/bin/
   - rm terraform_"$TF_VERSION"_linux_amd64.zip
   - terraform init
-  - terraform apply -var "client_id=$client_id" -var "client_secret=$client_secret" -auto-approve
+  - terraform apply -var "client_id=$client_id" -var "client_secret=$client_secret" -input=false -auto-approve
 
 deploy:
   provider: script
