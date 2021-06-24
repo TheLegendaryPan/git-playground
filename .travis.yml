@@ -47,9 +47,8 @@ before_deploy:
   - sudo mv terraform /usr/local/bin/
   - rm terraform_"$TF_VERSION"_linux_amd64.zip
   - terraform init
-  - terraform plan -lock=false -input=false
   # got this error when applying: Error: Error locking state: Error acquiring the state lock: state blob is already locked
-  - terraform apply -var "client_id=$client_id" -var "client_secret=$client_secret" -input=false -auto-approve
+  - terraform apply -lock=false -var "client_id=$client_id" -var "client_secret=$client_secret" -input=false -auto-approve
 
 deploy:
   provider: script
