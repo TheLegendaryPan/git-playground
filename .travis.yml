@@ -7,15 +7,15 @@ script:
 
 # Docker Run to Execute Unit Test Package
 - echo "Running Unit Tests"
-- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/view_model_test.py
+- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS -e MONGODB_CONNECTION_STRING todo-app:test Test/view_model_test.py
 
 # Docker Run to Execute Unit Integration Package 
 - echo "Running Integration Tests"
-- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS todo-app:test Test/client_test.py
+- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS -e MONGODB_CONNECTION_STRING todo-app:test Test/client_test.py
 
 # Docker Run to Execute Unit E2E Selenium Package
 - echo "Running E2E Tests"
-- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS -e ANON_USER -e ANON -e SECRET_KEY todo-app:test Test/selenium_test.py
+- docker run -e board_id -e list_id_Done -e list_id_Pending -e list_id_ToDo -e MONGO_LOGIN -e MONGO_PASS -e MONGODB_CONNECTION_STRING -e ANON_USER -e ANON -e SECRET_KEY todo-app:test Test/selenium_test.py
 - echo "All Tests Have Been Completed"
 
 # DockerHubLogin
@@ -79,6 +79,7 @@ env:
     # - ARM_SUBSCRIPTION_ID=d33b95c7-af3c-4247-9661-aa96d47fccc0
     # - ARM_CLIENT_SECRET=r6tBPNQ.Jwb3UspM.0LZrqY99ndiPWumd7
     - TF_VERSION=0.14.7
+    - MONGODB_CONNECTION_STRING=mongodb://module11-cosmos-serverless-terraform:Cz73djsVWUvuulGi6J0AOIQhrXm1xMfoyAMAPKCCimJjDW5xsFxc55Kr4Lx8ZO0KKSNyC9eySu93OpnhzlWjSA==@module11-cosmos-serverless-terraform.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@module11-cosmos-serverless-terraform@
 
 # heroku_login heroku_pass heroku_api
 # Trello API    
